@@ -13,10 +13,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: moduleListening
   title: Module Listening
-  description: "Experience the feeling of both side of the team!\r\n\r\nModule by
-    Asew54321\r\nImplemented by TheThirdMan\r\nmoduleID: moduleListening\r\n\r\nManual
-    HTML: https://ktane.timwi.de/HTML/Module%20Listening.html\r\nManual PDF: https://ktane.timwi.de/PDF/Module%20Listening.pdf\r\n\r\nGitHub
-    Repository: https://github.com/luisdiogo98/ktane-moduleListening\n\r\nAny problems/suggestions,
+  description: "I\u2019ll give you one guess as to why the file size was so large
+    for this module.\n\r\nModule by Asew54321\r\nImplemented by TheThirdMan\r\nmoduleID:
+    moduleListening\r\n\r\nManual HTML: https://ktane.timwi.de/HTML/Module%20Listening.html\r\nManual
+    PDF: https://ktane.timwi.de/PDF/Module%20Listening.pdf\r\n\r\nGitHub Repository:
+    https://github.com/luisdiogo98/ktane-moduleListening\n\r\nAny problems/suggestions,
     feel free to contact me on the KTaNE Discord @TheThirdMan. Join the KTaNE Discord
     here: https://discord.gg/Fv7YEDj"
   version: 1.0
