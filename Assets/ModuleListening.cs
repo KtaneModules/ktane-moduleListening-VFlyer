@@ -680,23 +680,7 @@ public class ModuleListening : MonoBehaviour
 				}
 				case 3:
 				{
-					if(moduleIndex.ToList().Exists(x => royalFlush.ToList().Exists(y => String.Compare(y, moduleNames[x], StringComparison.OrdinalIgnoreCase) == 0)))
-					{
-						codes[i][0] = (codes[i][0] + 4) % 10;
-						codes[i][1] = (codes[i][1] + 8) % 10;
-						codes[i][2] = (codes[i][2] + 15) % 10;
-						codes[i][3] = (codes[i][3] + 16) % 10;
-						codes[i][4] = (codes[i][4] + 23) % 10;
-					}
-					else if(moduleIndex.ToList().Exists(x => timwi.ToList().Exists(y => String.Compare(y, moduleNames[x], StringComparison.OrdinalIgnoreCase) == 0)))
-					{
-						int concat = codes[i][0] * 10000 + codes[i][1] * 1000 + codes[i][2] * 100 + codes[i][3] * 10 + codes[i][4];
-						
-						concat = (concat % 47) % 10;
-						for(int j = 0; j < codes[i].Length; j++)
-							codes[i][j] = (codes[i][j] + concat) % 10;
-					}
-					else if(moduleIndex.ToList().Exists(x => LeGeND.ToList().Exists(y => String.Compare(y, moduleNames[x], StringComparison.OrdinalIgnoreCase) == 0)) || moduleIndex.ToList().Exists(x => theThirdMan.ToList().Exists(y => String.Compare(y, moduleNames[x], StringComparison.OrdinalIgnoreCase) == 0)))
+					if(moduleIndex.ToList().Exists(x => LeGeND.ToList().Exists(y => String.Compare(y, moduleNames[x], StringComparison.OrdinalIgnoreCase) == 0)) || moduleIndex.ToList().Exists(x => theThirdMan.ToList().Exists(y => String.Compare(y, moduleNames[x], StringComparison.OrdinalIgnoreCase) == 0)))
 					{
 						if(bomb.GetPortCount() >= 4)
 						{
@@ -769,6 +753,22 @@ public class ModuleListening : MonoBehaviour
 									codes[i][j] = (codes[i][j] + bomb.GetSerialNumber()[j] - 'A' + 1) % 10;
 							}
 						}
+					}
+					else if(moduleIndex.ToList().Exists(x => timwi.ToList().Exists(y => String.Compare(y, moduleNames[x], StringComparison.OrdinalIgnoreCase) == 0)))
+					{
+						int concat = codes[i][0] * 10000 + codes[i][1] * 1000 + codes[i][2] * 100 + codes[i][3] * 10 + codes[i][4];
+						
+						concat = (concat % 47) % 10;
+						for(int j = 0; j < codes[i].Length; j++)
+							codes[i][j] = (codes[i][j] + concat) % 10;
+					}
+					else if(moduleIndex.ToList().Exists(x => royalFlush.ToList().Exists(y => String.Compare(y, moduleNames[x], StringComparison.OrdinalIgnoreCase) == 0)))
+					{
+						codes[i][0] = (codes[i][0] + 4) % 10;
+						codes[i][1] = (codes[i][1] + 8) % 10;
+						codes[i][2] = (codes[i][2] + 15) % 10;
+						codes[i][3] = (codes[i][3] + 16) % 10;
+						codes[i][4] = (codes[i][4] + 23) % 10;
 					}
 					else
 					{
