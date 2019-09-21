@@ -5,6 +5,7 @@ using System.Linq;
 using UnityEngine;
 using KModkit;
 using rnd = UnityEngine.Random;
+using System.Text.RegularExpressions;
 
 public class ModuleListening : MonoBehaviour 
 {
@@ -901,4 +902,196 @@ public class ModuleListening : MonoBehaviour
         Debug.LogFormat("[Module Listening #{0}] Code submission order is [ {1} ].", moduleId, used.Select(x => buttonMats[btnColors[x]].name).Join(", "));
         Debug.LogFormat("[Module Listening #{0}] Final submission code is {1}.", moduleId, used.Select(x => codes[x].Select(y => symbols[y]).Join("")).Join("  "));
 	}
+
+    //twitch plays
+    private bool cmdIsValid(string cmd)
+    {
+        char[] valids = { '!', '@', '%', '^', '(', '_', '|', '\\', '\'', '<' };
+        if (cmd.Length == 20)
+        {
+            foreach (char c in cmd)
+            {
+                if (!valids.Contains(c))
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    #pragma warning disable 414
+    private readonly string TwitchHelpMessage = @"!{0} play <color>/all [Presses the play button with the specified color (red,blue,green,yellow)/Presses all play buttons in order from left to right] | !{0} press <chars> [Presses the buttons with the specified chars on them (this has to be 20 chars long)]";
+    #pragma warning restore 414
+    IEnumerator ProcessTwitchCommand(string command)
+    {
+        if (Regex.IsMatch(command, @"^\s*play all\s*$", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant) || Regex.IsMatch(command, @"^\s*listen all\s*$", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant))
+        {
+            yield return null;
+            playBtns[0].OnInteract();
+            while (sound.isPlaying) yield return new WaitForSeconds(0.3f);
+            playBtns[1].OnInteract();
+            while (sound.isPlaying) yield return new WaitForSeconds(0.3f);
+            playBtns[2].OnInteract();
+            while (sound.isPlaying) yield return new WaitForSeconds(0.3f);
+            playBtns[3].OnInteract();
+            while (sound.isPlaying) yield return new WaitForSeconds(0.3f);
+            yield break;
+        }
+        if (Regex.IsMatch(command, @"^\s*play blue\s*$", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant) || Regex.IsMatch(command, @"^\s*listen blue\s*$", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant))
+        {
+            yield return null;
+            if (cassetteMats[btnColors[0]].name.EqualsIgnoreCase("blue_tape"))
+            {
+                playBtns[0].OnInteract();
+            }
+            else if (cassetteMats[btnColors[1]].name.EqualsIgnoreCase("blue_tape"))
+            {
+                playBtns[1].OnInteract();
+            }
+            else if (cassetteMats[btnColors[2]].name.EqualsIgnoreCase("blue_tape"))
+            {
+                playBtns[2].OnInteract();
+            }
+            else if (cassetteMats[btnColors[3]].name.EqualsIgnoreCase("blue_tape"))
+            {
+                playBtns[3].OnInteract();
+            }
+            while (sound.isPlaying) yield return new WaitForSeconds(0.3f);
+            yield break;
+        }
+        if (Regex.IsMatch(command, @"^\s*play red\s*$", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant) || Regex.IsMatch(command, @"^\s*listen red\s*$", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant))
+        {
+            yield return null;
+            if (cassetteMats[btnColors[0]].name.EqualsIgnoreCase("red_tape"))
+            {
+                playBtns[0].OnInteract();
+            }
+            else if (cassetteMats[btnColors[1]].name.EqualsIgnoreCase("red_tape"))
+            {
+                playBtns[1].OnInteract();
+            }
+            else if (cassetteMats[btnColors[2]].name.EqualsIgnoreCase("red_tape"))
+            {
+                playBtns[2].OnInteract();
+            }
+            else if (cassetteMats[btnColors[3]].name.EqualsIgnoreCase("red_tape"))
+            {
+                playBtns[3].OnInteract();
+            }
+            while (sound.isPlaying) yield return new WaitForSeconds(0.3f);
+            yield break;
+        }
+        if (Regex.IsMatch(command, @"^\s*play green\s*$", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant) || Regex.IsMatch(command, @"^\s*listen green\s*$", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant))
+        {
+            yield return null;
+            if (cassetteMats[btnColors[0]].name.EqualsIgnoreCase("green_tape"))
+            {
+                playBtns[0].OnInteract();
+            }
+            else if (cassetteMats[btnColors[1]].name.EqualsIgnoreCase("green_tape"))
+            {
+                playBtns[1].OnInteract();
+            }
+            else if (cassetteMats[btnColors[2]].name.EqualsIgnoreCase("green_tape"))
+            {
+                playBtns[2].OnInteract();
+            }
+            else if (cassetteMats[btnColors[3]].name.EqualsIgnoreCase("green_tape"))
+            {
+                playBtns[3].OnInteract();
+            }
+            while (sound.isPlaying) yield return new WaitForSeconds(0.3f);
+            yield break;
+        }
+        if (Regex.IsMatch(command, @"^\s*play yellow\s*$", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant) || Regex.IsMatch(command, @"^\s*listen yellow\s*$", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant))
+        {
+            yield return null;
+            if (cassetteMats[btnColors[0]].name.EqualsIgnoreCase("yellow_tape"))
+            {
+                playBtns[0].OnInteract();
+            }
+            else if (cassetteMats[btnColors[1]].name.EqualsIgnoreCase("yellow_tape"))
+            {
+                playBtns[1].OnInteract();
+            }
+            else if (cassetteMats[btnColors[2]].name.EqualsIgnoreCase("yellow_tape"))
+            {
+                playBtns[2].OnInteract();
+            }
+            else if (cassetteMats[btnColors[3]].name.EqualsIgnoreCase("yellow_tape"))
+            {
+                playBtns[3].OnInteract();
+            }
+            while (sound.isPlaying) yield return new WaitForSeconds(0.3f);
+            yield break;
+        }
+        string[] parameters = command.Split(' ');
+        if (Regex.IsMatch(parameters[0], @"^\s*press\s*$", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant))
+        {
+            if (parameters.Length >= 2)
+            {
+                string sub = command.Substring(6);
+                sub = sub.Replace(" ", "");
+                parameters[1] = sub;
+                if (cmdIsValid(parameters[1]))
+                {
+                    yield return null;
+                    for(int i = 0; i < parameters[1].Length; i++)
+                    {
+                        if (parameters[1].ElementAt(i).Equals('!'))
+                        {
+                            symbolBtns[0].OnInteract();
+                        }
+                        else if (parameters[1].ElementAt(i).Equals('@'))
+                        {
+                            symbolBtns[1].OnInteract();
+                        }
+                        else if (parameters[1].ElementAt(i).Equals('%'))
+                        {
+                            symbolBtns[2].OnInteract();
+                        }
+                        else if (parameters[1].ElementAt(i).Equals('^'))
+                        {
+                            symbolBtns[3].OnInteract();
+                        }
+                        else if (parameters[1].ElementAt(i).Equals('('))
+                        {
+                            symbolBtns[4].OnInteract();
+                        }
+                        else if (parameters[1].ElementAt(i).Equals('_'))
+                        {
+                            symbolBtns[5].OnInteract();
+                        }
+                        else if (parameters[1].ElementAt(i).Equals('|'))
+                        {
+                            symbolBtns[6].OnInteract();
+                        }
+                        else if (parameters[1].ElementAt(i).Equals('\\'))
+                        {
+                            symbolBtns[7].OnInteract();
+                        }
+                        else if (parameters[1].ElementAt(i).Equals('\''))
+                        {
+                            symbolBtns[8].OnInteract();
+                        }
+                        else if (parameters[1].ElementAt(i).Equals('<'))
+                        {
+                            symbolBtns[9].OnInteract();
+                        }
+                        yield return new WaitForSeconds(0.1f);
+                    }
+                }
+                else
+                {
+                    yield return "sendtochaterror One of the character's is not valid or you did not give me 20 characters to press!";
+                }
+            }
+            yield break;
+        }
+    }
 }
