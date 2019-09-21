@@ -5031,9 +5031,9 @@ MonoBehaviour:
   NumberCipher:
   - {fileID: 8300000, guid: cf342a40c8abcfe469917c00e20a6d9d, type: 3}
   NumberNimbleness:
-  - {fileID: 8300000, guid: 40acbc154432db34593e8615111360ee, type: 3}
-  - {fileID: 8300000, guid: 49bbdcda9b521e848a0c1d90a1262215, type: 3}
-  - {fileID: 8300000, guid: 3701fa40e638a8f43b90bdba37e83938, type: 3}
+  - {fileID: 8300000, guid: 7b31f013f26b3a440bc4848da7e11531, type: 3}
+  - {fileID: 8300000, guid: f7345198b914daa4c88eafead967b673, type: 3}
+  - {fileID: 8300000, guid: 9fff8ad4e59e39b4eb5c292191c48932, type: 3}
   OnlyConnect:
   - {fileID: 8300000, guid: 68b0810ce0df8ec40b06e2834ae45278, type: 3}
   - {fileID: 8300000, guid: 07d0e69ef9d1c9f41adc20a5d1fe1c8c, type: 3}
