@@ -336,9 +336,12 @@ public class ModuleListening : MonoBehaviour
 	public KMSelectable[] symbolBtns;
 
 	public Material[] buttonMats;
+	public Material[] lightMats;
 
 	public GameObject cassette;
 	public Material[] cassetteMats;
+
+	public Renderer[] correctLights;
 
 	int[] btnColors;
 	int[] moduleIndex = new int[4];
@@ -347,6 +350,7 @@ public class ModuleListening : MonoBehaviour
 	int[] answer;
 
 	List<int> input = new List<int>();
+	List<int> used;
 
 	void Awake()
 	{
@@ -395,6 +399,8 @@ public class ModuleListening : MonoBehaviour
 		{
 			if(input.SequenceEqual(answer))
 			{
+				foreach(Renderer r in correctLights)
+					r.material = lightMats[0];
 				GetComponent<KMAudio>().PlayGameSoundAtTransform(KMSoundOverride.SoundEffect.CorrectChime, transform);
         		Debug.LogFormat("[Module Listening #{0}] Input is correct. Module solved.", moduleId);
 				GetComponent<KMBombModule>().HandlePass();
@@ -402,6 +408,16 @@ public class ModuleListening : MonoBehaviour
 			}
 			else
 			{
+				bool[] lightStatus = { true, true, true, true };
+
+				for(int i = 0; i < input.Count; i++)
+				{
+					if(input[i] != answer[i])
+						lightStatus[used[i / 5]] = false;
+				}
+
+				StartCoroutine(ShowCorrectLights(lightStatus));
+
         		Debug.LogFormat("[Module Listening #{0}] Strike! Received input: [ {1} ].", moduleId, input.Select(x => symbols[x]).Join(""));
 				GetComponent<KMBombModule>().HandleStrike();
 				input.Clear();
@@ -786,7 +802,7 @@ public class ModuleListening : MonoBehaviour
 
 	void CalcSubmission()
 	{
-		List<int> used = new List<int>();
+		used = new List<int>();
 		List<int> sub = new List<int>();
 
 		for(int i = 0; i < moduleIndex.Length; i++)
@@ -901,6 +917,22 @@ public class ModuleListening : MonoBehaviour
 
         Debug.LogFormat("[Module Listening #{0}] Code submission order is [ {1} ].", moduleId, used.Select(x => buttonMats[btnColors[x]].name).Join(", "));
         Debug.LogFormat("[Module Listening #{0}] Final submission code is {1}.", moduleId, used.Select(x => codes[x].Select(y => symbols[y]).Join("")).Join("  "));
+	}
+
+	IEnumerator ShowCorrectLights(bool[] status)
+	{
+		for(int i = 0; i < status.Length; i++)
+		{
+			if(status[i])
+				correctLights[i].material = lightMats[0];
+			else
+				correctLights[i].material = lightMats[1];
+		}
+
+		yield return new WaitForSeconds(2f);
+
+		for(int i = 0; i < status.Length; i++)
+			correctLights[i].material = lightMats[2];
 	}
 
     //twitch plays
