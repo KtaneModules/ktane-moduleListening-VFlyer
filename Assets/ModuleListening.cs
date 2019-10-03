@@ -324,7 +324,7 @@ public class ModuleListening : MonoBehaviour
 	};
 	String[] royalFlush = { "Benedict Cumberbatch", "Blockbusters", "British Slang", "Christmas Presents", "The Crystal Maze", "The Cube", "European Travel", "Free Parking", "Graffiti Numbers", "Guitar Chords", "Hieroglyphics", "The Jack-O'-Lantern", "The Jewel Vault", "The Labyrinth", "Lightspeed", "The London Underground", "Maintenance", "The Moon", "Mortal Kombat", "The Number Cipher", "Simon's Stages", "Sonic the Hedgehog", "The Sphere", "Street Fighter", "The Swan", "The Wire" };
 	String[] timwi = { "Battleship"," Black Hole", "Colored Squares", "Double-Oh", "Friendship", "Gridlock", "Hexamaze", "Hogwarts"," The Hypercube", "Kudosudoku", "Only Connect", "Rock-Paper-Scissors-L.-Sp.", "Simon Sends", "Simon Sings", "Souvenir", "Tennis", "Word Search", "X-Ray", "Yahtzee" };
-	String[] LeGeND = { "Colored Keys", "Gadgetron Vendor", "Hidden Colors", "The Jack-O'-Lantern", "LED Math", "Zoni" };
+	String[] LeGeND = { "Colored Keys", "Fast Math", "Gadgetron Vendor", "Hidden Colors", "The Jack-O'-Lantern", "LED Math", "Zoni" };
 	String[] theThirdMan = { "Boot Too Big", "Double Expert", "Lucky Dice", "The Necronomicon", "Qwirkle", "Seven Deadly Sins", "Treasure Hunt" };
 
 	//Logging
