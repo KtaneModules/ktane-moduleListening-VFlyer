@@ -433,7 +433,6 @@ public class ModuleListening : MonoBehaviour
 	{
 		LoadAudioLibrary();
 		SetUpButtons();
-		CalcModifications();
 		CalcSubmission();
 	}
 
@@ -574,10 +573,11 @@ public class ModuleListening : MonoBehaviour
 		
 			codes[i] = moduleCodes[moduleIndex[i]];
 
-			Debug.LogFormat("[Module Listening #{0}] {1} play button code (before modifications) is {2}.", moduleId, new String(colorArray), codes[i].Select(x => symbols[x]).Join(""));
+			Debug.LogFormat("[Module Listening #{0}] {1} play button code is {2}.", moduleId, new String(colorArray), codes[i].Select(x => symbols[x]).Join(""));
 		}
 	}
 
+	//currently not being used
 	void CalcModifications()
 	{
 		for(int i = 0; i < codes.Length; i++)
