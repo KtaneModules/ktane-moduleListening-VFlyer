@@ -12,320 +12,79 @@ public class ModuleListening : MonoBehaviour
 	public KMBombInfo bomb;
 	public KMAudio Audio;
 
-	readonly char[] symbols = { '!', '@', '%', '^', '(', '_', '|', '\\', '\'', '<' };
+	readonly string symbols = "!@%^(_|\\\'<";
 
-	public AudioClip[] AMistake;
-	public AudioClip[] Bartending;
-	public AudioClip[] Battleship;
-	public AudioClip[] BenedictCumberbatch;
-	public AudioClip[] BlackHole;
-	public AudioClip[] Blockbusters;
-	public AudioClip[] BobBarks;
-	public AudioClip[] BootTooBig;
-	public AudioClip[] BritishSlang;
-	public AudioClip[] BrokenButtons;
-	public AudioClip[] BurglarAlarm;
-	public AudioClip[] CheapCheckout;
-	public AudioClip[] ChordQualities;
-	public AudioClip[] ChristmasPresents;
-	public AudioClip[] ColoredKeys;
-	public AudioClip[] ColoredSquares;
-	public AudioClip[] CookieJars;
-	public AudioClip[] Creation;
-	public AudioClip[] CrystalMaze;
-	public AudioClip[] Cube;
-	public AudioClip[] DoubleExpert;
-	public AudioClip[] DoubleOh;
-	public AudioClip[] EncryptedEquations;
-	public AudioClip[] EuropeanTravel;
-	public AudioClip[] FastMath;
-	public AudioClip[] ForgetEnigma;
-	public AudioClip[] ForgetMeNow;
-	public AudioClip[] FreeParking;
-	public AudioClip[] Friendship;
-	public AudioClip[] GadgetronVendor;
-	public AudioClip[] GraffitiNumbers;
-	public AudioClip[] Gridlock;
-	public AudioClip[] GuitarChords;
-	public AudioClip[] Hexamaze;
-	public AudioClip[] HiddenColors;
-	public AudioClip[] Hieroglyphics;
-	public AudioClip[] Hogwarts;
-	public AudioClip[] Hypercube;
-	public AudioClip[] Instructions;
-	public AudioClip[] JackOLantern;
-	public AudioClip[] JewelVault;
-	public AudioClip[] Kudosudoku;
-	public AudioClip[] Labyrinth;
-	public AudioClip[] Laundry;
-	public AudioClip[] LEDMath;
-	public AudioClip[] Lightspeed;
-	public AudioClip[] LondonUnderground;
-	public AudioClip[] LuckyDice;
-	public AudioClip[] Maintenance;
-	public AudioClip[] Mazematics;
-	public AudioClip[] MegaMan2;
-	public AudioClip[] Minesweeper;
-	public AudioClip[] Moon;
-	public AudioClip[] MortalKombat;
-	public AudioClip[] Necronomicon;
-	public AudioClip[] Neutralization;
-	public AudioClip[] Nonograms;
-	public AudioClip[] NumberCipher;
-	public AudioClip[] NumberNimbleness;
-	public AudioClip[] OnlyConnect;
-	public AudioClip[] Painting;
-	public AudioClip[] PartialDerivatives;
-	public AudioClip[] PerspectivePegs;
-	public AudioClip[] QuizzBuzz;
-	public AudioClip[] Qwirkle;
-	public AudioClip[] Rhythms;
-	public AudioClip[] RPSLS;
-	public AudioClip[] SchlagDenBomb;
-	public AudioClip[] SevenDeadlySins;
-	public AudioClip[] ShapesAndBombs;
-	public AudioClip[] SillySlots;
-	public AudioClip[] SimonSamples;
-	public AudioClip[] SimonSelects;
-	public AudioClip[] SimonSends;
-	public AudioClip[] SimonSimons;
-	public AudioClip[] SimonSings;
-	public AudioClip[] SimonStores;
-	public AudioClip[] SimonsStages;
-	public AudioClip[] Sink;
-	public AudioClip[] SonicTheHedgehog;
-	public AudioClip[] Souvenir;
-	public AudioClip[] Sphere;
-	public AudioClip[] StreetFighter;
-	public AudioClip[] Swan;
-	public AudioClip[] Synchronization;
-	public AudioClip[] Tangrams;
-	public AudioClip[] TashaSqueals;
-	public AudioClip[] Tennis;
-	public AudioClip[] TreasureHunt;
-	public AudioClip[] TurtleRobot;
-	public AudioClip[] UnphairCipher;
-	public AudioClip[] Valves;
-	public AudioClip[] VisualImpairment;
-	public AudioClip[] WasteManagement;
-	public AudioClip[] Wavetapping;
-	public AudioClip[] Wire;
-	public AudioClip[] WordSearch;
-	public AudioClip[] XRay;
-	public AudioClip[] X01;
-	public AudioClip[] Yahtzee;
-	public AudioClip[] Zoni;
+	public AudioClip[] AMistake,
+		Bartending, Battleship, BenedictCumberbatch, BlackHole, Blockbusters, BobBarks, BootTooBig, BritishSlang, BrokenButtons, BurglarAlarm,
+		CheapCheckout, ChordQualities, ChristmasPresents, ColoredKeys, ColoredSquares, CookieJars, Creation, CrystalMaze, Cube,
+		DoubleExpert, DoubleOh,
+		EncryptedEquations, EuropeanTravel,
+		FastMath, ForgetEnigma, ForgetMeNow, FreeParking, Friendship,
+		GadgetronVendor, GraffitiNumbers, Gridlock, GuitarChords,
+		Hexamaze, HiddenColors, Hieroglyphics, Hogwarts, Hypercube,
+		Instructions,
+		JackOLantern, JewelVault,
+		Kudosudoku,
+		Labyrinth, Laundry, LEDMath, Lightspeed, LondonUnderground, LuckyDice,
+		Maintenance, Mazematics, MegaMan2, Minesweeper, MortalKombat,
+		Necronomicon, Neutralization, Nonograms, NumberCipher, NumberNimbleness,
+		OnlyConnect,
+		Painting, PartialDerivatives, PerspectivePegs,
+		QuizzBuzz, Qwirkle,
+		Rhythms, RPSLS,
+		SchlagDenBomb, SevenDeadlySins, ShapesAndBombs, SillySlots, SimonSamples, SimonSelects, SimonSends, SimonSimons, SimonSings, SimonStores, SimonsStages, Sink, SonicTheHedgehog, Souvenir, Sphere, StreetFighter, Sun, Swan, Synchronization,
+		Tangrams, TashaSqueals, Tennis, TreasureHunt, TurtleRobot,
+		UnfairCipher,
+		Valves, VisualImpairment,
+		WasteManagement, Wavetapping, Wire, WordSearch,
+		XRay, X01,
+		Yahtzee,
+		Zoni;
 
 	public AudioSource sound;
 	AudioClip[][] audioLibrary;
-	String[] moduleNames = {
-		"A Mistake",
-		"Bartending",
-		"Battleship",
-		"Benedict Cumberbatch",
-		"Black Hole",
-		"Blockbusters",
-		"Bob Barks",
-		"Boot Too Big",
-		"British Slang",
-		"Broken Buttons",
-		"Burglar Alarm",
-		"Cheap Checkout",
-		"Chord Qualities",
-		"Christmas Presents",
-		"Colored Keys",
-		"Colored Squares",
-		"Cookie Jars",
-		"Creation",
-		"The Crystal Maze",
-		"The Cube",
-		"Double Expert",
-		"Double-Oh",
-		"Encrypted Equations",
-		"European Travel",
-		"Fast Math",
-		"Forget Enigma",
-		"Forget Me Now",
-		"Free Parking",
-		"Friendship",
-		"Gadgetron Vendor",
-		"Graffiti Numbers",
-		"Gridlock",
-		"Guitar Chords",
-		"Hexamaze",
-		"Hidden Colors",
-		"Hieroglyphics",
-		"Hogwarts",
-		"The Hypercube",
-		"Instructions",
-		"The Jack-O’-Lantern",
-		"The Jewel Vault",
-		"Kudosudoku",
-		"The Labyrinth",
-		"Laundry",
-		"LED Math",
-		"Lightspeed",
-		"The London Underground",
-		"Lucky Dice",
-		"Maintenance",
-		"Mazematics",
-		"Mega Man 2",
-		"Minesweeper",
-		"The Moon",
-		"Mortal Kombat",
-		"The Necronomicon",
-		"Neutralization",
-		"The Number Cipher",
-		"Number Nimbleness",
-		"Only Connect",
-		"Painting",
-		"Partial Derivatives",
-		"Perspective Pegs",
-		"Quiz Buzz",
-		"Qwirkle",
-		"Rhythms",
-		"Rock-Paper-Scissors-L.-Sp.",
-		"Schlag den Bomb",
-		"Seven Deadly Sins",
-		"Shapes and Bombs",
-		"Silly Slots",
-		"Simon Samples",
-		"Simon Selects",
-		"Simon Sends",
-		"Simon Simons",
-		"Simon Sings",
-		"Simon Stores",
-		"Simon's Stages",
-		"Sink",
-		"Sonic The Hedgehog",
-		"Souvenir",
-		"The Sphere",
-		"Street Fighter",
-		"The Swan",
-		"Synchronization",
-		"Tangrams",
-		"Tasha Squeals",
-		"Tennis",
-		"Treasure Hunt",
-		"Turtle Robot",
-		"Unfair Cipher",
-		"Valves",
-		"Visual Impairment",
-		"Waste Management",
-		"Wavetapping",
-		"The Wire",
-		"Word Search",
-		"X-Ray",
-		"X01",
-		"Yahtzee",
-		"Zoni",
+	string[] moduleNames = {
+		"A Mistake", "Bartending", "Battleship", "Benedict Cumberbatch", "Black Hole", "Blockbusters", "Bob Barks", "Boot Too Big", "British Slang", "Broken Buttons",
+		"Burglar Alarm", "Cheap Checkout", "Chord Qualities", "Christmas Presents", "Colored Keys", "Colored Squares","Cookie Jars", "Creation", "The Crystal Maze", "The Cube",
+		"Double Expert", "Double-Oh", "Encrypted Equations", "European Travel","Fast Math", "Forget Enigma", "Forget Me Now", "Free Parking", "Friendship", "Gadgetron Vendor",
+		"Graffiti Numbers", "Gridlock", "Guitar Chords", "Hexamaze", "Hidden Colors", "Hieroglyphics", "Hogwarts", "The Hypercube", "Instructions", "The Jack-O’-Lantern",
+		"The Jewel Vault", "Kudosudoku", "The Labyrinth", "Laundry", "LED Math", "Lightspeed", "The London Underground", "Lucky Dice", "Maintenance", "Mazematics",
+		"Mega Man 2", "Minesweeper", "Mortal Kombat", "The Necronomicon", "Neutralization", "The Number Cipher", "Number Nimbleness", "Only Connect", "Painting", "Partial Derivatives",
+		"Perspective Pegs", "Quiz Buzz", "Qwirkle", "Rhythms", "Rock-Paper-Scissors-L.-Sp.", "Schlag den Bomb", "Seven Deadly Sins", "Shapes and Bombs", "Silly Slots", "Simon Samples",
+		"Simon Selects", "Simon Sends", "Simon Simons", "Simon Sings", "Simon Stores", "Simon's Stages", "Sink","Sonic The Hedgehog", "Souvenir", "The Sphere",
+		"Street Fighter", "The Sun", "The Swan", "Synchronization", "Tangrams", "Tasha Squeals", "Tennis", "Treasure Hunt", "Turtle Robot", "Unfair Cipher",
+		"Valves", "Visual Impairment", "Waste Management","Wavetapping", "The Wire", "Word Search", "X-Ray", "X01", "Yahtzee", "Zoni",
 	};
-	int[][] moduleCodes = {
-		new int[] { 5, 6, 7, 0, 4, },
-		new int[] { 3, 7, 3, 6, 9, },
-		new int[] { 4, 0, 4, 2, 4, },
-		new int[] { 6, 4, 1, 3, 2, },
-		new int[] { 8, 2, 9, 6, 3, },
-		new int[] { 1, 4, 0, 4, 5, },
-		new int[] { 2, 1, 6, 8, 3, },
-		new int[] { 9, 6, 0, 3, 7, },
-		new int[] { 6, 3, 1, 5, 4, },
-		new int[] { 0, 6, 4, 6, 5, },
-		new int[] { 5, 1, 9, 4, 9, },
-		new int[] { 7, 4, 0, 9, 2, },
-		new int[] { 4, 7, 3, 2, 3, },
-		new int[] { 5, 4, 1, 9, 3, },
-		new int[] { 0, 1, 3, 4, 0, },
-		new int[] { 2, 9, 6, 4, 4, },
-		new int[] { 4, 7, 0, 5, 2, },
-		new int[] { 9, 9, 2, 2, 4, },
-		new int[] { 8, 8, 6, 4, 3, },
-		new int[] { 6, 1, 6, 8, 3, },
-		new int[] { 0, 1, 5, 3, 0, },
-		new int[] { 5, 9, 8, 7, 8, },
-		new int[] { 6, 0, 4, 6, 7, },
-		new int[] { 2, 0, 3, 6, 4, },
-		new int[] { 5, 9, 5, 0, 2, },
-		new int[] { 0, 1, 0, 3, 5, },
-		new int[] { 2, 3, 0, 3, 3, },
-		new int[] { 3, 0, 9, 7, 7, },
-		new int[] { 9, 8, 8, 7, 4, },
-		new int[] { 4, 5, 2, 0, 6, },
-		new int[] { 7, 5, 1, 9, 2, },
-		new int[] { 2, 7, 8, 4, 7, },
-		new int[] { 9, 0, 8, 6, 0, },
-		new int[] { 8, 4, 3, 9, 0, },
-		new int[] { 5, 8, 2, 7, 0, },
-		new int[] { 0, 8, 2, 0, 4, },
-		new int[] { 3, 4, 2, 6, 7, },
-		new int[] { 3, 0, 0, 4, 7, },
-		new int[] { 0, 3, 9, 2, 4, },
-		new int[] { 8, 1, 7, 7, 6, },
-		new int[] { 6, 4, 1, 8, 3, },
-		new int[] { 5, 6, 2, 9, 6, },
-		new int[] { 5, 9, 5, 6, 5, },
-		new int[] { 1, 4, 8, 4, 8, },
-		new int[] { 1, 7, 0, 3, 5, },
-		new int[] { 8, 5, 0, 3, 8, },
-		new int[] { 1, 2, 9, 8, 5, },
-		new int[] { 6, 9, 4, 7, 1, },
-		new int[] { 6, 8, 6, 6, 9, },
-		new int[] { 8, 4, 0, 2, 8, },
-		new int[] { 0, 4, 7, 4, 5, },
-		new int[] { 8, 4, 2, 1, 5, },
-		new int[] { 3, 9, 0, 6, 2, },
-		new int[] { 6, 8, 8, 7, 6, },
-		new int[] { 2, 7, 7, 9, 0, },
-		new int[] { 4, 3, 5, 9, 0, },
-		new int[] { 4, 0, 3, 8, 7, },
-		new int[] { 1, 8, 0, 3, 3, },
-		new int[] { 6, 4, 9, 1, 5, },
-		new int[] { 3, 0, 4, 0, 8, },
-		new int[] { 8, 8, 0, 2, 3, },
-		new int[] { 1, 3, 1, 6, 5, },
-		new int[] { 8, 5, 0, 2, 3, },
-		new int[] { 3, 3, 3, 1, 4, },
-		new int[] { 9, 6, 0, 2, 2, },
-		new int[] { 0, 7, 4, 4, 9, },
-		new int[] { 6, 8, 8, 2, 7, },
-		new int[] { 4, 8, 7, 0, 8, },
-		new int[] { 3, 1, 1, 4, 3, },
-		new int[] { 3, 5, 5, 4, 5, },
-		new int[] { 4, 5, 2, 1, 0, },
-		new int[] { 3, 2, 1, 0, 9, },
-		new int[] { 1, 9, 5, 5, 5, },
-		new int[] { 6, 4, 1, 1, 0, },
-		new int[] { 5, 6, 3, 6, 6, },
-		new int[] { 0, 3, 1, 8, 5, },
-		new int[] { 8, 0, 5, 4, 2, },
-		new int[] { 0, 9, 6, 1, 0, },
-		new int[] { 3, 6, 9, 0, 3, },
-		new int[] { 3, 9, 9, 0, 2, },
-		new int[] { 1, 4, 7, 7, 7, },
-		new int[] { 3, 7, 6, 3, 3, },
-		new int[] { 8, 0, 1, 1, 6, },
-		new int[] { 2, 1, 5, 4, 1, },
-		new int[] { 0, 9, 0, 5, 9, },
-		new int[] { 9, 6, 1, 4, 9, },
-		new int[] { 7, 4, 0, 0, 4, },
-		new int[] { 0, 1, 6, 0, 0, },
-		new int[] { 6, 3, 9, 9, 5, },
-		new int[] { 5, 1, 8, 8, 5, },
-		new int[] { 5, 6, 5, 0, 0, },
-		new int[] { 0, 5, 7, 0, 6, },
-		new int[] { 9, 5, 9, 3, 0, },
-		new int[] { 5, 0, 9, 3, 4, },
-		new int[] { 2, 3, 6, 5, 0, },
-		new int[] { 8, 8, 0, 8, 0, },
-		new int[] { 8, 3, 5, 8, 7, },
-		new int[] { 0, 8, 9, 7, 6, },
-		new int[] { 0, 4, 2, 6, 4, },
-		new int[] { 2, 4, 2, 4, 5, },
+	string[] moduleIds = {
+		"MistakeModule","BartendingModule","BattleshipModule","benedictCumberbatch","BlackHoleModule","blockbusters","ksmBobBarks","bootTooBig","britishSlang","BrokenButtonsModule",
+		"burglarAlarm","CheapCheckoutModule","ChordQualities","christmasPresents","lgndColoredKeys","ColoredSquaresModule","cookieJars","CreationModule","crystalMaze","cube",
+		"doubleExpert","DoubleOhModule","EncryptedEquationsModule","europeanTravel","fastMath","forgetEnigma","ForgetMeNow","freeParking","FriendshipModule","lgndGadgetronVendor",
+		"graffitiNumbers","GridlockModule","guitarChords","HexamazeModule","lgndHiddenColors","hieroglyphics","HogwartsModule","TheHypercubeModule","instructions","jackOLantern",
+		"jewelVault","KudosudokuModule","labyrinth","Laundry","lgndLEDMath","lightspeed","londonUnderground","luckyDice","maintenance","mazematics",
+		"megaMan2","MinesweeperModule","mortalKombat","necronomicon","neutralization","numberCipher","numberNimbleness","OnlyConnectModule","Painting","partialDerivatives",
+		"spwizPerspectivePegs","quizBuzz","qwirkle","MusicRhythms","RockPaperScissorsLizardSpockModule","qSchlagDenBomb","sevenDeadlySins","ShapesBombs","SillySlots","simonSamples",
+		"simonSelectsModule","SimonSendsModule","simonSimons","SimonSingsModule","simonStores","simonsStages","Sink","sonic","SouvenirModule","sphere",
+		"streetFighter","sun","theSwan","SynchronizationModule","Tangrams","tashaSqueals","TennisModule","treasureHunt","turtleRobot","unfairCipher",
+		"valves","visual_impairment","wastemanagement","Wavetapping","wire","WordSearchModule","XRayModule","X01","YahtzeeModule","lgndZoni",
 	};
-	String[] royalFlush = { "Benedict Cumberbatch", "Blockbusters", "British Slang", "Christmas Presents", "The Crystal Maze", "The Cube", "European Travel", "Free Parking", "Graffiti Numbers", "Guitar Chords", "Hieroglyphics", "The Jack-O'-Lantern", "The Jewel Vault", "The Labyrinth", "Lightspeed", "The London Underground", "Maintenance", "The Moon", "Mortal Kombat", "The Number Cipher", "Simon's Stages", "Sonic the Hedgehog", "The Sphere", "Street Fighter", "The Swan", "The Wire" };
-	String[] timwi = { "Battleship"," Black Hole", "Colored Squares", "Double-Oh", "Friendship", "Gridlock", "Hexamaze", "Hogwarts"," The Hypercube", "Kudosudoku", "Only Connect", "Rock-Paper-Scissors-L.-Sp.", "Simon Sends", "Simon Sings", "Souvenir", "Tennis", "Word Search", "X-Ray", "Yahtzee" };
-	String[] LeGeND = { "Colored Keys", "Fast Math", "Gadgetron Vendor", "Hidden Colors", "The Jack-O'-Lantern", "LED Math", "Zoni" };
-	String[] theThirdMan = { "Boot Too Big", "Double Expert", "Lucky Dice", "The Necronomicon", "Qwirkle", "Seven Deadly Sins", "Treasure Hunt" };
+	string[] moduleCodesAll = new string[]
+		{
+			"_|\\!(", "^\\^|<", "(!(%(", "|(@^%", "'%<|^", "@(!(_", "%@|'^", "<|!^\\", "|^@_(", "!|(|_",
+			"_@<(<", "\\(!<%", "(\\^%^" ,"_(@<^", "!@^(!", "%<|((", "(\\!_%", "<<%%(", "''|(^", "|@|'^",
+			"!@_^!", "_<'\\'", "|!(|\\", "%!^|(", "_<_!%", "!@!^_", "%^!^^", "^!<\\\\", "<''\\(", "(_%!|",
+			"\\_@<%", "%\\'(\\", "<!'|!", "'(^<!", "_'%\\!", "!'%!(", "^(%|\\", "^!!(\\", "!^<%(", "'@\\\\|",
+			"|(@'^", "_|%<|", "_<_|_", "@('('", "@\\!^_", "'_!^'", "@%<'_", "|<(\\@", "|'||<", "'(!%'",
+			"!(\\(_","'(%@_","|''\\|","%\\\\<!","(^_<!","(!^'\\","@'!^^","|(<@_","^!(!'",
+			"''!%^","@^@|_","'_!%^","^^^@(","<|!%%","!\\((<","|''%\\","('\\!'","^@@(^","^__(_",
+			"(_%@!","^%@!<","@<___","|(@@!","_|^||","!^@'_","'!_(%","!<|@!","^|<!^","^<<!%",
+			"@(\\\\\\","^\\|^^","^<!|%","'!@@|","%@_(@","!<!_<","<|@(<","\\(!!(","!@|!!","|^<<_","_@''_",
+			"_|_!!","!_\\!|","<_<^!","_!<^(","%^|_!","''!'!","'^_'\\","!'<\\|","!(%|(","%(%(_",
+		};
+
+	string[] royalFlushModNames = { "Benedict Cumberbatch", "Blockbusters", "British Slang", "Christmas Presents", "The Crystal Maze", "The Cube", "European Travel", "Free Parking", "Graffiti Numbers", "Guitar Chords", "Hieroglyphics", "The Jack-O'-Lantern", "The Jewel Vault", "The Labyrinth", "Lightspeed", "The London Underground", "Maintenance", "Mortal Kombat", "The Number Cipher", "Simon's Stages", "Sonic the Hedgehog", "The Sphere", "Street Fighter", "The Sun", "The Swan", "The Wire" };
+	string[] timwiModNames = { "Battleship"," Black Hole", "Colored Squares", "Double-Oh", "Friendship", "Gridlock", "Hexamaze", "Hogwarts"," The Hypercube", "Kudosudoku", "Only Connect", "Rock-Paper-Scissors-L.-Sp.", "Simon Sends", "Simon Sings", "Souvenir", "Tennis", "Word Search", "X-Ray", "Yahtzee" };
+	string[] LeGeNDModNames = { "Colored Keys", "Fast Math", "Gadgetron Vendor", "Hidden Colors", "The Jack-O'-Lantern", "LED Math", "Zoni" };
+	string[] theThirdManModNames = { "Boot Too Big", "Double Expert", "Lucky Dice", "The Necronomicon", "Qwirkle", "Seven Deadly Sins", "Treasure Hunt" };
 
 	//Logging
 	static int moduleIdCounter = 1;
@@ -335,6 +94,7 @@ public class ModuleListening : MonoBehaviour
 	public KMSelectable[] playBtns;
 	public KMSelectable[] symbolBtns;
 
+
 	public Material[] buttonMats;
 	public Material[] lightMats;
 
@@ -342,36 +102,49 @@ public class ModuleListening : MonoBehaviour
 	public Material[] cassetteMats;
 
 	public Renderer[] correctLights;
+	public MeshRenderer backing;
+	public Light lightTransform;
 
 	int[] btnColors;
 	int[] moduleIndex = new int[4];
 	int[] soundIndex = new int[4];
-	int[][] codes = new int[4][];
-	int[] answer;
+	string[] codeStrings = new string[4];
+
+	string[] buttonColors = { "red", "green", "blue", "yellow" };
+	public string[] moduleSelectedNames = new string[4];
+	public string answerString;
+	public string inputString;
+
+	public List<int> orderSubmit = new List<int>();
+
+	bool hardModeEnabled = false; // TP handling only atm, may try to add config down the line
 
 	List<int> input = new List<int>();
-	List<int> used;
+
+	public List<string> grabModuleSoundsAll()
+	{// Grabs the names of the modules referenced by this module from each mod index from left to right.
+		List<string> output = new List<string>();
+		foreach (int modIdx in moduleIndex)
+			output.Add(moduleNames[modIdx]);
+		return output;
+	}
 
 	void Awake()
 	{
 		moduleId = moduleIdCounter++;
 
-		playBtns[0].OnInteract += delegate () { PressPlay(0); return false; };
-		playBtns[1].OnInteract += delegate () { PressPlay(1); return false; };
-		playBtns[2].OnInteract += delegate () { PressPlay(2); return false; };
-		playBtns[3].OnInteract += delegate () { PressPlay(3); return false; };
-
-		symbolBtns[0].OnInteract += delegate () { PressSymbol(0); return false; };
-		symbolBtns[1].OnInteract += delegate () { PressSymbol(1); return false; };
-		symbolBtns[2].OnInteract += delegate () { PressSymbol(2); return false; };
-		symbolBtns[3].OnInteract += delegate () { PressSymbol(3); return false; };
-		symbolBtns[4].OnInteract += delegate () { PressSymbol(4); return false; };
-		symbolBtns[5].OnInteract += delegate () { PressSymbol(5); return false; };
-		symbolBtns[6].OnInteract += delegate () { PressSymbol(6); return false; };
-		symbolBtns[7].OnInteract += delegate () { PressSymbol(7); return false; };
-		symbolBtns[8].OnInteract += delegate () { PressSymbol(8); return false; };
-		symbolBtns[9].OnInteract += delegate () { PressSymbol(9); return false; };
-
+		for (int x = 0; x < playBtns.Length; x++)
+		{
+			int y = x;
+			playBtns[x].OnInteract += delegate { PressPlay(y); return false; };
+		}
+		for (int x = 0; x < symbolBtns.Length; x++)
+		{
+			int y = x;
+			symbolBtns[x].OnInteract += delegate { PressSymbol(y); return false; };
+		}
+		float scale = transform.lossyScale.x;
+		lightTransform.range *= scale;
 	}
 
 	void PressPlay(int btn)
@@ -379,7 +152,12 @@ public class ModuleListening : MonoBehaviour
 		playBtns[btn].AddInteractionPunch(.5f);
 
 		cassette.GetComponentInChildren<Renderer>().material = cassetteMats[btnColors[btn]];
-
+		if (moduleSolved)
+		{
+			GetComponent<KMAudio>().PlayGameSoundAtTransform(KMSoundOverride.SoundEffect.ButtonRelease, transform);
+			return;
+		}
+		inputString = "";
 		sound.clip = audioLibrary[moduleIndex[btn]][soundIndex[btn]];
 		sound.Play();
 		input.Clear();
@@ -393,37 +171,33 @@ public class ModuleListening : MonoBehaviour
 		if(moduleSolved)
 			return;
 
-		input.Add(btn);
+		inputString += symbols[btn];
 
-		if(input.Count() == 20)
+		if(inputString.Length == 20)
 		{
-			if(input.SequenceEqual(answer))
+			if(inputString.ToCharArray().SequenceEqual(answerString.ToCharArray()))
 			{
 				foreach(Renderer r in correctLights)
 					r.material = lightMats[0];
 				GetComponent<KMAudio>().PlayGameSoundAtTransform(KMSoundOverride.SoundEffect.CorrectChime, transform);
-        		Debug.LogFormat("[Module Listening #{0}] Input is correct. Module solved.", moduleId);
+        		Debug.LogFormat("[Module Listening #{0}] Entire input is correct. Module solved.", moduleId);
 				GetComponent<KMBombModule>().HandlePass();
 				moduleSolved = true;
 			}
 			else
 			{
 				bool[] lightStatus = { true, true, true, true };
-
-				for(int i = 0; i < input.Count; i++)
-				{
-					if(input[i] != answer[i])
-						lightStatus[used[i / 5]] = false;
-				}
+				for (int x = 0; x < lightStatus.Length; x++)
+					lightStatus[orderSubmit[x]] = answerString.Substring(x * 5, 5).SequenceEqual(inputString.Substring(x * 5, 5));
 
 				StartCoroutine(ShowCorrectLights(lightStatus));
 
-        		Debug.LogFormat("[Module Listening #{0}] Strike! Received input: [ {1} ].", moduleId, input.Select(x => symbols[x]).Join(""));
+        		Debug.LogFormat("[Module Listening #{0}] Strike! Received input: [ {1} ].", moduleId, inputString.ToCharArray().Join());
 				GetComponent<KMBombModule>().HandleStrike();
-				input.Clear();
+				inputString = "";
 			}
 		}
-		else if(input.Count() % 5 == 0)
+		else if(inputString.Length % 5 == 0)
 		{
 			Audio.PlaySoundAtTransform("ding", transform);
 		}
@@ -433,125 +207,58 @@ public class ModuleListening : MonoBehaviour
 	{
 		LoadAudioLibrary();
 		SetUpButtons();
+		if (hardModeEnabled) {
+			CalcModifications();
+			backing.material.color = Color.red;
+		}
 		CalcSubmission();
 	}
 
 	void LoadAudioLibrary()
 	{
+		if (audioLibrary != null) return;
 		audioLibrary = new AudioClip[][] {
-			AMistake,
-			Bartending,
-			Battleship,
-			BenedictCumberbatch,
-			BlackHole,
-			Blockbusters,
-			BobBarks,
-			BootTooBig,
-			BritishSlang,
-			BrokenButtons,
-			BurglarAlarm,
-			CheapCheckout,
-			ChordQualities,
-			ChristmasPresents,
-			ColoredKeys,
-			ColoredSquares,
-			CookieJars,
-			Creation,
-			CrystalMaze,
-			Cube,
-			DoubleExpert,
-			DoubleOh,
-			EncryptedEquations,
-			EuropeanTravel,
-			FastMath,
-			ForgetEnigma,
-			ForgetMeNow,
-			FreeParking,
-			Friendship,
-			GadgetronVendor,
-			GraffitiNumbers,
-			Gridlock,
-			GuitarChords,
-			Hexamaze,
-			HiddenColors,
-			Hieroglyphics,
-			Hogwarts,
-			Hypercube,
-			Instructions,
-			JackOLantern,
-			JewelVault,
-			Kudosudoku,
-			Labyrinth,
-			Laundry,
-			LEDMath,
-			Lightspeed,
-			LondonUnderground,
-			LuckyDice,
-			Maintenance,
-			Mazematics,
-			MegaMan2,
-			Minesweeper,
-			Moon,
-			MortalKombat,
-			Necronomicon,
-			Neutralization,
-			NumberCipher,
-			NumberNimbleness,
-			OnlyConnect,
-			Painting,
-			PartialDerivatives,
-			PerspectivePegs,
-			QuizzBuzz,
-			Qwirkle,
-			Rhythms,
-			RPSLS,
-			SchlagDenBomb,
-			SevenDeadlySins,
-			ShapesAndBombs,
-			SillySlots,
-			SimonSamples,
-			SimonSelects,
-			SimonSends,
-			SimonSimons,
-			SimonSings,
-			SimonStores,
-			SimonsStages,
-			Sink,
-			SonicTheHedgehog,
-			Souvenir,
-			Sphere,
-			StreetFighter,
-			Swan,
-			Synchronization,
-			Tangrams,
-			TashaSqueals,
-			Tennis,
-			TreasureHunt,
-			TurtleRobot,
-			UnphairCipher,
-			Valves,
-			VisualImpairment,
-			WasteManagement,
-			Wavetapping,
-			Wire,
-			WordSearch,
-			XRay,
-			X01,
-			Yahtzee,
-			Zoni,
+			AMistake, Bartending, Battleship,
+			BenedictCumberbatch, BlackHole, Blockbusters, BobBarks,
+			BootTooBig, BritishSlang, BrokenButtons, BurglarAlarm,
+			CheapCheckout, ChordQualities, ChristmasPresents,
+			ColoredKeys, ColoredSquares, CookieJars,
+			Creation, CrystalMaze, Cube, DoubleExpert,
+			DoubleOh, EncryptedEquations, EuropeanTravel,
+			FastMath, ForgetEnigma, ForgetMeNow, FreeParking,
+			Friendship, GadgetronVendor, GraffitiNumbers,
+			Gridlock, GuitarChords, Hexamaze, HiddenColors,
+			Hieroglyphics, Hogwarts, Hypercube, Instructions,
+			JackOLantern, JewelVault, Kudosudoku,
+			Labyrinth, Laundry, LEDMath, Lightspeed, LondonUnderground,
+			LuckyDice, Maintenance, Mazematics, MegaMan2,
+			Minesweeper, MortalKombat, Necronomicon,
+			Neutralization, NumberCipher, NumberNimbleness, OnlyConnect,
+			Painting, PartialDerivatives,
+			PerspectivePegs, QuizzBuzz, Qwirkle,
+			Rhythms, RPSLS, SchlagDenBomb, SevenDeadlySins,
+			ShapesAndBombs, SillySlots,
+			SimonSamples, SimonSelects, SimonSends, SimonSimons,
+			SimonSings,SimonStores,SimonsStages,Sink,
+			SonicTheHedgehog,Souvenir,Sphere,StreetFighter,
+			Sun,Swan,Synchronization,Tangrams,
+			TashaSqueals,Tennis,TreasureHunt,TurtleRobot,
+			UnfairCipher,Valves,VisualImpairment,WasteManagement,
+			Wavetapping,Wire,WordSearch,XRay,
+			X01,Yahtzee,Zoni,
 		};
 	}
 	
 	void SetUpButtons()
 	{
-		btnColors = Enumerable.Range(0, 4).OrderBy(x => x = rnd.Range(0, 10000)).ToArray();
+		btnColors = Enumerable.Range(0, 4).OrderBy(x => x = rnd.Range(int.MinValue, int.MaxValue)).ToArray();
 
 		for(int i = 0; i < btnColors.Length; i++)
 			playBtns[i].gameObject.transform.GetComponentInChildren<Renderer>().material = buttonMats[btnColors[i]];
 
 		cassette.GetComponentInChildren<Renderer>().material = cassetteMats[btnColors[0]];
 
-        Debug.LogFormat("[Module Listening #{0}] Play button colors are [ {1} ].", moduleId, btnColors.Select(x => buttonMats[x].name).Join(", "));
+        Debug.LogFormat("[Module Listening #{0}] Play button colors: [ {1} ].", moduleId, btnColors.Select(x => buttonColors[x]).Join(", "));;
 	
 		List<int> used = new List<int>();
 
@@ -566,367 +273,417 @@ public class ModuleListening : MonoBehaviour
 			used.Add(r);
 			soundIndex[i] = rnd.Range(0, audioLibrary[moduleIndex[i]].Length);
 
-			char[] colorArray = buttonMats[btnColors[i]].name.ToArray();
-			colorArray[0] = char.ToUpperInvariant(colorArray[0]);
 
-        	Debug.LogFormat("[Module Listening #{0}] {1} play button module is {2}.", moduleId, new String(colorArray), moduleNames[moduleIndex[i]]);
-		
-			codes[i] = moduleCodes[moduleIndex[i]];
-
-			Debug.LogFormat("[Module Listening #{0}] {1} play button code is {2}.", moduleId, new String(colorArray), codes[i].Select(x => symbols[x]).Join(""));
+        	Debug.LogFormat("[Module Listening #{0}] The {1} button plays a sound from the module \"{2}.\"", moduleId, buttonColors[btnColors[i]], moduleNames[moduleIndex[i]]);
+			codeStrings[i] = moduleCodesAll[moduleIndex[i]];
+			moduleSelectedNames[i] = moduleNames[moduleIndex[i]];
+			Debug.LogFormat("[Module Listening #{0}] The code from the {1} button{3} is [ {2} ].", moduleId, buttonColors[btnColors[i]], moduleCodesAll[r].ToCharArray().Join(), hardModeEnabled ? " before modification" : "");
 		}
 	}
 
-	//currently not being used
+	//Hard Mode Only
 	void CalcModifications()
 	{
-		for(int i = 0; i < codes.Length; i++)
+		for(int i = 0; i < codeStrings.Length; i++)
 		{
-			switch(btnColors[i])
+			List<int> curModCode = new List<int>();
+			foreach (char s in codeStrings[i])
+			{
+				curModCode.Add(symbols.IndexOf(s));
+			}
+			switch (btnColors[i])
 			{
 				case 0:
 				{
-					bool modified = false;
+						Debug.LogFormat("[Module Listening #{0}] Red play modifications:", moduleId);
+						bool modified = false;
 
-					if(bomb.GetPortCount() >= 4)
-					{
-						modified = true;
-						for(int j = 0; j < codes[i].Length; j++)
-							codes[i][j] = (codes[i][j] + 4) % 10;
-					}
+						if (bomb.GetPortCount() >= 4)
+						{
+							modified = true;
+							Debug.LogFormat("[Module Listening #{0}] The bomb has 4 or more ports.", moduleId);
+							for (int j = 0; j < curModCode.Count; j++)
+								curModCode[j] = (curModCode[j] + 4) % 10;
+							
+						}
 						
-					if(bomb.GetBatteryCount(Battery.AA) == bomb.GetBatteryCount())
-					{
-						modified = true;
-						for(int j = 0; j < codes[i].Length; j++)
-							if(codes[i][j] == 0)
-								codes[i][j] = 7;
-							else if(codes[i][j] == 7)
-								codes[i][j] = 0;
-							else if(codes[i][j] == 2)
-								codes[i][j] = 9;
-							else if(codes[i][j] == 9)
-								codes[i][j] = 2;
-							else if(codes[i][j] == 3)
-								codes[i][j] = 8;
-							else if(codes[i][j] == 8)
-								codes[i][j] = 3;
-					}
+						if (bomb.GetBatteryCount(Battery.AA) == bomb.GetBatteryCount())
+						{
+							modified = true;
+							Debug.LogFormat("[Module Listening #{0}] The bomb consists of only AA batteries or no batteries.", moduleId);
+							for (int j = 0; j < curModCode.Count; j++)
+							switch (curModCode[j])
+								{
+									case 0:
+										curModCode[j] = 7;
+										break;
+									case 7:
+										curModCode[j] = 0;
+										break;
+									case 2:
+										curModCode[j] = 9;
+										break;
+									case 9:
+										curModCode[j] = 2;
+										break;
+									case 3:
+										curModCode[j] = 8;
+										break;
+									case 8:
+										curModCode[j] = 3;
+										break;
+								}
+						}
 						
-					if("AEIOU".Any(x => bomb.GetSerialNumberLetters().Contains(x)))
-					{
-						modified = true;
-						for(int j = 0; j < codes[i].Length; j++)
-							if(codes[i][j] % 2 == 0)
-								codes[i][j] = (codes[i][j] + 1) % 10;
-							else
-								codes[i][j]--;
-					}
-						
-					if(bomb.GetOnIndicators().Count() == bomb.GetOffIndicators().Count())
-					{
-						modified = true;
-						for(int j = 0; j < codes[i].Length; j++)
-							codes[i][j] = 9 - codes[i][j];
-					}
+						if ("AEIOU".Any(x => bomb.GetSerialNumberLetters().Contains(x)))
+						{
+							modified = true;
+							Debug.LogFormat("[Module Listening #{0}] The serial number contains a vowel.", moduleId);
+							for (int j = 0; j < curModCode.Count; j++)
+								if(curModCode[j] % 2 == 0)
+									curModCode[j]++;
+								else
+									curModCode[j]--;
+						}
 
-					if(!modified)
-						codes[i] = codes[i].Reverse().ToArray();
+						if (bomb.GetOnIndicators().Count() == bomb.GetOffIndicators().Count())
+						{
+							Debug.LogFormat("[Module Listening #{0}] There is an equal number of lit and unlit indicators", moduleId);
+							modified = true;
+							for(int j = 0; j < curModCode.Count; j++)
+								curModCode[j] = 9 - curModCode[j];
+						}
 
-        			Debug.LogFormat("[Module Listening #{0}] Red play button code (after modifications) is {1}.", moduleId, codes[i].Select(x => symbols[x]).Join(""));
+						if (!modified)
+						{
+							Debug.LogFormat("[Module Listening #{0}] None of the above conditions were met on the table.", moduleId);
+							curModCode.Reverse();
+						}
+
+        			Debug.LogFormat("[Module Listening #{0}] Red play button code after modifications: [ {1} ]", moduleId, curModCode.Select(x => symbols[x]).Join());
 					break;
 				}
 				case 1:
 				{
-					if(!(bomb.GetBatteryCount() >= 2))
-						for(int j = 0; j < codes[i].Length; j++)
-							codes[i][j] = (codes[i][j] + bomb.GetIndicators().Count()) % 10;
+						Debug.LogFormat("[Module Listening #{0}] Green play modifications:", moduleId);
+						if (bomb.GetBatteryCount() < 2)
+						{
+							Debug.LogFormat("[Module Listening #{0}] The bomb does not have 2 or more batteries.", moduleId);
+							for (int j = 0; j < curModCode.Count; j++)
+								curModCode[j] = (curModCode[j] + bomb.GetIndicators().Count()) % 10;
+						}
 
-					if(!(bomb.GetIndicators().Count() >= 2))
-						for(int j = 0; j < codes[i].Length; j++)
-							codes[i][j] = (codes[i][j] + bomb.GetPortCount()) % 10;
 
-					if(!(bomb.GetPortCount() >= 2))
-						for(int j = 0; j < codes[i].Length; j++)
-							codes[i][j] = (codes[i][j] + bomb.GetBatteryCount()) % 10;
-
-					if(!(bomb.GetSerialNumberLetters().Count() == 3))
-						for(int j = 0; j < codes[i].Length; j++)
-							codes[i][j] = (codes[i][j] + bomb.GetSerialNumberNumbers().Sum()) % 10;
-					
-					Debug.LogFormat("[Module Listening #{0}] Green play button code (after modifications) is {1}.", moduleId, codes[i].Select(x => symbols[x]).Join(""));
+						if (bomb.GetIndicators().Count() < 2)
+						{
+							Debug.LogFormat("[Module Listening #{0}] The bomb does not have 2 or more indicators.", moduleId);
+							for (int j = 0; j < curModCode.Count; j++)
+								curModCode[j] = (curModCode[j] + bomb.GetPortCount()) % 10;
+						}
+						if (bomb.GetPortCount() < 2)
+						{
+							Debug.LogFormat("[Module Listening #{0}] The bomb does not have 2 or more ports.", moduleId);
+							for (int j = 0; j < curModCode.Count; j++)
+								curModCode[j] = (curModCode[j] + bomb.GetBatteryCount()) % 10;
+						}
+						if (bomb.GetSerialNumberLetters().Count() != 3)
+						{
+							Debug.LogFormat("[Module Listening #{0}] The serial number does not have exactly 3 letters.", moduleId);
+							for (int j = 0; j < curModCode.Count; j++)
+								curModCode[j] = (curModCode[j] + bomb.GetSerialNumberNumbers().Sum()) % 10;
+						}
+						Debug.LogFormat("[Module Listening #{0}] Green play button code after modifications: [ {1} ]", moduleId, curModCode.Select(x => symbols[x]).Join());
 					break;
 				}
 				case 2:
 				{
-					if(bomb.IsIndicatorOn(Indicator.BOB))
-					{
-
-					}
-					else if(bomb.GetBatteryCount() == 5 && bomb.GetBatteryHolderCount() == 3)
-					{
-						for(int j = 0; j < codes[i].Length; j++)
-							codes[i][j] = (codes[i][j] + 1) % 10;
-					}
-					else if(bomb.GetPortCount() == 0)
-					{
-						for(int j = 0; j < codes[i].Length; j++)
-							codes[i][j] = (codes[i][j] + bomb.GetIndicators().Count()) % 10;
-					}
-					else if(!"13579".Any(x => bomb.GetSerialNumber().Contains(x)))
-					{
-						for(int j = 0; j < codes[i].Length; j++)
-							if(codes[i][j] % 2 == 0)
-								codes[i][j] /= 2;
-							else
-								codes[i][j] = (codes[i][j] * 2) % 10;
-					}
-					else
-					{
-						for(int j = 0; j < codes[i].Length; j++)
+						Debug.LogFormat("[Module Listening #{0}] Blue play modifications:", moduleId);
+						if (!bomb.IsIndicatorOn(Indicator.BOB))
 						{
-							if("0123456789".Contains(bomb.GetSerialNumber()[j]))
-								codes[i][j] = (codes[i][j] + bomb.GetSerialNumber()[j] - '0') % 10;
+							if (bomb.GetBatteryCount() == 5 && bomb.GetBatteryHolderCount() == 3)
+							{
+								Debug.LogFormat("[Module Listening #{0}] There are 5 batteries in 3 holders.", moduleId);
+								for (int j = 0; j < curModCode.Count; j++)
+									curModCode[j] = (curModCode[j] + 1) % 10;
+							}
+							else if (bomb.GetPortCount() == 0)
+							{
+								Debug.LogFormat("[Module Listening #{0}] There are no ports.", moduleId);
+								for (int j = 0; j < curModCode.Count; j++)
+									curModCode[j] = (curModCode[j] + bomb.GetIndicators().Count()) % 10;
+							}
+							else if (!"13579".Any(x => bomb.GetSerialNumber().Contains(x)))
+							{
+								Debug.LogFormat("[Module Listening #{0}] There are no odd digits in the serial number.", moduleId);
+								for (int j = 0; j < curModCode.Count; j++)
+									if (curModCode[j] % 2 == 0)
+										curModCode[j] /= 2;
+									else
+										curModCode[j] = curModCode[j] * 2 % 10;
+							}
 							else
-								codes[i][j] = (codes[i][j] + bomb.GetSerialNumber()[j] - 'A' + 1) % 10;
+							{
+								string serialNo = bomb.GetSerialNumber();
+								Debug.LogFormat("[Module Listening #{0}] None of the above applied.", moduleId);
+								for (int j = 0; j < curModCode.Count; j++)
+								{
+									if ("0123456789".Contains(serialNo[j]))
+										curModCode[j] = (curModCode[j] + serialNo[j] - '0') % 10;
+									else
+										curModCode[j] = (curModCode[j] + serialNo[j] - 'A' + 1) % 10;
+								}
+							}
 						}
-					}
-					Debug.LogFormat("[Module Listening #{0}] Blue play button code (after modifications) is {1}.", moduleId, codes[i].Select(x => symbols[x]).Join(""));
+						else
+						{
+							Debug.LogFormat("[Module Listening #{0}] There is a lit BOB indicator.", moduleId);
+						}
+						Debug.LogFormat("[Module Listening #{0}] Blue play button code after modifications: [ {1} ]", moduleId, curModCode.Select(x => symbols[x]).Join());
 					break;
 				}
 				case 3:
 				{
-					if(moduleIndex.ToList().Exists(x => LeGeND.ToList().Exists(y => String.Compare(y, moduleNames[x], StringComparison.OrdinalIgnoreCase) == 0)) || moduleIndex.ToList().Exists(x => theThirdMan.ToList().Exists(y => String.Compare(y, moduleNames[x], StringComparison.OrdinalIgnoreCase) == 0)))
-					{
-						if(bomb.GetPortCount() >= 4)
+						Debug.LogFormat("[Module Listening #{0}] Yellow play modifications:", moduleId);
+						if (moduleIndex.ToList().Exists(x => LeGeNDModNames.ToList().Exists(y => string.Compare(y, moduleNames[x], StringComparison.OrdinalIgnoreCase) == 0)) || moduleIndex.ToList().Exists(x => theThirdManModNames.ToList().Exists(y => string.Compare(y, moduleNames[x], StringComparison.OrdinalIgnoreCase) == 0)))
 						{
-							for(int j = 0; j < codes[i].Length; j++)
-								codes[i][j] = (codes[i][j] + 4) % 10;
-						}
-						else if(bomb.GetBatteryCount(Battery.AA) == bomb.GetBatteryCount())
-						{
-							for(int j = 0; j < codes[i].Length; j++)
-								if(codes[i][j] == 0)
-									codes[i][j] = 7;
-								else if(codes[i][j] == 7)
-									codes[i][j] = 0;
-								else if(codes[i][j] == 2)
-									codes[i][j] = 9;
-								else if(codes[i][j] == 9)
-									codes[i][j] = 2;
-								else if(codes[i][j] == 3)
-									codes[i][j] = 8;
-								else if(codes[i][j] == 8)
-									codes[i][j] = 3;
-						}
-						else if("AEIOU".Any(x => bomb.GetSerialNumberLetters().Contains(x)))
-						{
-							for(int j = 0; j < codes[i].Length; j++)
-								if(codes[i][j] % 2 == 0)
-									codes[i][j] = (codes[i][j] + 1) % 10;
-								else
-									codes[i][j]--;
-						}
-						else if(bomb.GetOnIndicators().Count() == bomb.GetOffIndicators().Count())
-						{
-							for(int j = 0; j < codes[i].Length; j++)
-								codes[i][j] = 9 - codes[i][j];
-						}
-						else
-						{
-							codes[i] = codes[i].Reverse().ToArray();
-						}
-
-						if(bomb.IsIndicatorOn(Indicator.BOB))
-						{
-
-						}
-						else if(bomb.GetBatteryCount() == 5 && bomb.GetBatteryHolderCount() == 3)
-						{
-							for(int j = 0; j < codes[i].Length; j++)
-								codes[i][j] = (codes[i][j] + 1) % 10;
-						}
-						else if(bomb.GetPortCount() == 0)
-						{
-							for(int j = 0; j < codes[i].Length; j++)
-								codes[i][j] = (codes[i][j] + bomb.GetIndicators().Count()) % 10;
-						}
-						else if(!"13579".Any(x => bomb.GetSerialNumber().Contains(x)))
-						{
-							for(int j = 0; j < codes[i].Length; j++)
-								if(codes[i][j] % 2 == 0)
-									codes[i][j] /= 2;
-								else
-									codes[i][j] = (codes[i][j] * 2) % 10;
-						}
-						else
-						{
-							for(int j = 0; j < codes[i].Length; j++)
+							Debug.LogFormat("[Module Listening #{0}] At least 1 sound comes from a module made by LeGeND or TheThirdMan.", moduleId);
+							// Red Modification
+							if (bomb.GetPortCount() >= 4)
 							{
-								if("0123456789".Contains(bomb.GetSerialNumber()[j]))
-									codes[i][j] = (codes[i][j] + bomb.GetSerialNumber()[j] - '0') % 10;
+								Debug.LogFormat("[Module Listening #{0}] The bomb has 4 or more ports.", moduleId);
+								for (int j = 0; j < curModCode.Count; j++)
+									curModCode[j] = (curModCode[j] + 4) % 10;
+
+							}
+							else if (bomb.GetBatteryCount(Battery.AA) == bomb.GetBatteryCount())
+							{
+								Debug.LogFormat("[Module Listening #{0}] The bomb consists of only AA batteries.", moduleId);
+								for (int j = 0; j < curModCode.Count; j++)
+									switch (curModCode[j])
+									{
+										case 0:
+											curModCode[j] = 7;
+											break;
+										case 7:
+											curModCode[j] = 0;
+											break;
+										case 2:
+											curModCode[j] = 9;
+											break;
+										case 9:
+											curModCode[j] = 2;
+											break;
+										case 3:
+											curModCode[j] = 8;
+											break;
+										case 8:
+											curModCode[j] = 3;
+											break;
+									}
+							}
+							else if ("AEIOU".Any(x => bomb.GetSerialNumberLetters().Contains(x)))
+							{
+								Debug.LogFormat("[Module Listening #{0}] The serial number contains a vowel.", moduleId);
+								for (int j = 0; j < curModCode.Count; j++)
+									if (curModCode[j] % 2 == 0)
+										curModCode[j]++;
+									else
+										curModCode[j]--;
+							}
+							else if (bomb.GetOnIndicators().Count() == bomb.GetOffIndicators().Count())
+							{
+								Debug.LogFormat("[Module Listening #{0}] There is an equal number of lit and unlit indicators", moduleId);
+								for (int j = 0; j < curModCode.Count; j++)
+									curModCode[j] = 9 - curModCode[j];
+							}
+							else
+							{
+								Debug.LogFormat("[Module Listening #{0}] None of the above conditions were met on the table.", moduleId);
+								curModCode.Reverse();
+							}
+							// Blue Modification
+							if (!bomb.IsIndicatorOn(Indicator.BOB))
+							{
+								if (bomb.GetBatteryCount() == 5 && bomb.GetBatteryHolderCount() == 3)
+								{
+									Debug.LogFormat("[Module Listening #{0}] There are 5 batteries in 3 holders.", moduleId);
+									for (int j = 0; j < curModCode.Count; j++)
+										curModCode[j] = (curModCode[j] + 1) % 10;
+								}
+								else if (bomb.GetPortCount() == 0)
+								{
+									Debug.LogFormat("[Module Listening #{0}] There are no ports.", moduleId);
+									for (int j = 0; j < curModCode.Count; j++)
+										curModCode[j] = (curModCode[j] + bomb.GetIndicators().Count()) % 10;
+								}
+								else if (!"13579".Any(x => bomb.GetSerialNumber().Contains(x)))
+								{
+									Debug.LogFormat("[Module Listening #{0}] There are no odd digits in the serial number.", moduleId);
+									for (int j = 0; j < curModCode.Count; j++)
+										if (curModCode[j] % 2 == 0)
+											curModCode[j] /= 2;
+										else
+											curModCode[j] = curModCode[j] * 2 % 10;
+								}
 								else
-									codes[i][j] = (codes[i][j] + bomb.GetSerialNumber()[j] - 'A' + 1) % 10;
+								{
+									string serialNo = bomb.GetSerialNumber();
+									Debug.LogFormat("[Module Listening #{0}] None of the above applied.", moduleId);
+									for (int j = 0; j < curModCode.Count; j++)
+									{
+										if ("0123456789".Contains(serialNo[j]))
+											curModCode[j] = (curModCode[j] + serialNo[j] - '0') % 10;
+										else
+											curModCode[j] = (curModCode[j] + serialNo[j] - 'A' + 1) % 10;
+									}
+								}
+							}
+							else
+							{
+								Debug.LogFormat("[Module Listening #{0}] There is a lit BOB indicator.", moduleId);
 							}
 						}
-					}
-					else if(moduleIndex.ToList().Exists(x => timwi.ToList().Exists(y => String.Compare(y, moduleNames[x], StringComparison.OrdinalIgnoreCase) == 0)))
+					else if (moduleIndex.ToList().Exists(x => timwiModNames.ToList().Exists(y => string.Compare(y, moduleNames[x], StringComparison.OrdinalIgnoreCase) == 0)))
 					{
-						int concat = codes[i][0] * 10000 + codes[i][1] * 1000 + codes[i][2] * 100 + codes[i][3] * 10 + codes[i][4];
-						
-						concat = (concat % 47) % 10;
-						for(int j = 0; j < codes[i].Length; j++)
-							codes[i][j] = (codes[i][j] + concat) % 10;
+						Debug.LogFormat("[Module Listening #{0}] At least 1 sound comes from a module made by Timwi.", moduleId);
+						int concat = int.Parse(curModCode.Join("")) % 47 % 10;
+						for (int j = 0; j < curModCode.Count; j++)
+								curModCode[j] = (curModCode[j] + concat) % 10;
 					}
-					else if(moduleIndex.ToList().Exists(x => royalFlush.ToList().Exists(y => String.Compare(y, moduleNames[x], StringComparison.OrdinalIgnoreCase) == 0)))
+					else if (moduleIndex.ToList().Exists(x => royalFlushModNames.ToList().Exists(y => string.Compare(y, moduleNames[x], StringComparison.OrdinalIgnoreCase) == 0)))
 					{
-						codes[i][0] = (codes[i][0] + 4) % 10;
-						codes[i][1] = (codes[i][1] + 8) % 10;
-						codes[i][2] = (codes[i][2] + 15) % 10;
-						codes[i][3] = (codes[i][3] + 16) % 10;
-						codes[i][4] = (codes[i][4] + 23) % 10;
+							Debug.LogFormat("[Module Listening #{0}] At least 1 sound comes from a module made by Royal_Flu$h.", moduleId);
+							int[] swanCodes = { 4, 8, 15, 16, 23, 42 };
+							for (int p = 0; p < curModCode.Count; p++)
+							{
+								curModCode[p] = (curModCode[p] + swanCodes[p]) % 10;
+							}
 					}
 					else
 					{
-						List<int> codeTmp = codes[i].ToList();
-						codeTmp.Sort();
-						codes[i] = codeTmp.ToArray();
+							Debug.LogFormat("[Module Listening #{0}] None of the sounds come from a module made by Royal_Flu$h, Timwi, TheThirdMan, or LeGeND.", moduleId);
+							curModCode.Sort();
 					}
 
-					Debug.LogFormat("[Module Listening #{0}] Yellow play button code (after modifications) is {1}.", moduleId, codes[i].Select(x => symbols[x]).Join(""));
+					Debug.LogFormat("[Module Listening #{0}] Yellow play button code after modifications: [ {1} ]", moduleId, curModCode.Select(x => symbols[x]).Join());
 					break;
 				}
 			}
+			string codeModified = "";
+			foreach (int x in curModCode)
+				codeModified += symbols[x];
+			codeStrings[i] = codeModified;
 		}
 	}
 
 	void CalcSubmission()
 	{
-		used = new List<int>();
-		List<int> sub = new List<int>();
-
-		for(int i = 0; i < moduleIndex.Length; i++)
-			if(bomb.GetModuleNames().Exists(x => String.Compare(x, moduleNames[moduleIndex[i]], StringComparison.OrdinalIgnoreCase) == 0))
+		List<int> unused = new List<int>(btnColors);
+		List<string> submitList = new List<string>();
+		List<string> bombModIDs = bomb.GetModuleIDs();
+		answerString = "";
+		Debug.LogFormat("[Module Listening #{0}] Submission Order: ", moduleId);
+		for (int i = 0; i < moduleIndex.Length; i++)
+			if (bombModIDs.Contains(moduleIds[moduleIndex[i]]))
 			{
-				used.Add(i);
-				for(int j = 0; j < codes[i].Length; j++)
-					sub.Add(codes[i][j]);
+				unused.Remove(i);
+				submitList.Add(buttonColors[btnColors[i]]);
+				Debug.LogFormat("[Module Listening #{0}] The {1} play button is the left-most button that have sounds from the module that is present on the bomb.", moduleId, buttonColors[btnColors[i]]);
+				answerString += codeStrings[i];
+
 				break;
 			}
 
-		if(used.Count() == 0)
+		if (unused.Count() == 4)
 		{
-			used.Add(0);
-			for(int i = 0; i < codes[0].Length; i++)
-					sub.Add(codes[0][i]);
+			submitList.Add(buttonColors[unused[0]]);
+			unused.RemoveAt(0);
+			Debug.LogFormat("[Module Listening #{0}] No play buttons contain a sound from a module on the bomb. The left-most play button used is {1}.", moduleId, buttonColors[btnColors[0]]);
+			answerString += codeStrings[0];
 		}
 
-		if((bomb.IsIndicatorPresent(Indicator.FRK) || bomb.IsIndicatorPresent(Indicator.TRN)) && !used.Contains(Array.IndexOf(btnColors, 0)))
+		if ((bomb.IsIndicatorPresent(Indicator.FRK) || bomb.IsIndicatorPresent(Indicator.TRN)) && unused.Contains(0))
 		{
-			used.Add(Array.IndexOf(btnColors, 0));
-			for(int i = 0; i < codes[Array.IndexOf(btnColors, 0)].Length; i++)
-					sub.Add(codes[Array.IndexOf(btnColors, 0)][i]);
+			Debug.LogFormat("[Module Listening #{0}] There is a TRN/FRK indicator and red is not used yet.", moduleId);
+			submitList.Add(buttonColors[0]);
+			unused.Remove(0);
+			answerString += codeStrings[Array.IndexOf(btnColors, 0)];
 		}
-		else if(bomb.GetIndicators().Count() >= 3 && !used.Contains(Array.IndexOf(btnColors, 1)))
+		else if (bomb.GetIndicators().Count() >= 3 && unused.Contains(1))
 		{
-			used.Add(Array.IndexOf(btnColors, 1));
-			for(int i = 0; i < codes[Array.IndexOf(btnColors, 1)].Length; i++)
-					sub.Add(codes[Array.IndexOf(btnColors, 1)][i]);
+			Debug.LogFormat("[Module Listening #{0}] There are at least 3 indicators and green is not used yet.", moduleId);
+			unused.Remove(1);
+			submitList.Add(buttonColors[1]);
+			answerString += codeStrings[Array.IndexOf(btnColors, 1)];
 		}
-		else if(bomb.GetOnIndicators().Count() > bomb.GetOffIndicators().Count() && !used.Contains(Array.IndexOf(btnColors, 3)))
+		else if (bomb.GetOnIndicators().Count() > bomb.GetOffIndicators().Count() && unused.Contains(3))
 		{
-			used.Add(Array.IndexOf(btnColors, 3));
-			for(int i = 0; i < codes[Array.IndexOf(btnColors, 3)].Length; i++)
-					sub.Add(codes[Array.IndexOf(btnColors, 3)][i]);
+			Debug.LogFormat("[Module Listening #{0}] There are more lit indicators than unlit indicators and yellow is not used yet.", moduleId);
+			unused.Remove(3);
+			submitList.Add(buttonColors[3]);
+			answerString += codeStrings[Array.IndexOf(btnColors, 3)];
 		}
-		else if(!used.Contains(Array.IndexOf(btnColors, 2)))
+		else if(unused.Contains(2))
 		{
-			used.Add(Array.IndexOf(btnColors, 2));
-			for(int i = 0; i < codes[Array.IndexOf(btnColors, 2)].Length; i++)
-					sub.Add(codes[Array.IndexOf(btnColors, 2)][i]);
+			Debug.LogFormat("[Module Listening #{0}] Blue is not used yet.", moduleId);
+			unused.Remove(2);
+			submitList.Add(buttonColors[2]);
+			answerString += codeStrings[Array.IndexOf(btnColors, 2)];
 		}
 		else
 		{
-			String cmp = "ZZZZ";
+			string cmp = "";
 			int best = -1;
-			for(int i = 0; i < btnColors.Length; i++)
+			for (int i = 0; i < unused.Count; i++)
 			{
-				if(used.Contains(i))
-					continue;
 
-				if(String.Compare(moduleNames[moduleIndex[i]], cmp, StringComparison.OrdinalIgnoreCase) < 0)
+				if (cmp.Length == 0 || string.Compare(moduleNames[moduleIndex[unused[i]]].Replace("The ",""), cmp, StringComparison.OrdinalIgnoreCase) < 0)
 				{
-					cmp = moduleNames[moduleIndex[i]];
+					cmp = moduleNames[moduleIndex[unused[i]]].Replace("The ", "");
 					best = i;
 				}
 			}
-
-			used.Add(best);
-			for(int i = 0; i < codes[best].Length; i++)
-					sub.Add(codes[best][i]);
+			Debug.LogFormat("[Module Listening #{0}] No available colors from the provided conditions, the {1} play button has the module that comes first alphabetically.", moduleId, buttonColors[btnColors[best]]);
+			unused.Remove(btnColors[best]);
+			submitList.Add(buttonColors[btnColors[best]]);
+			answerString += codeStrings[Array.IndexOf(btnColors, best)];
 		}
 
-		int color1 = -1;
-		int color2 = -1;
+		int color1 = unused[0];
+		int color2 = unused[1];
+		Debug.LogFormat("[Module Listening #{0}] The {1} play button is the left-most unused. The {2} play button is the right-most unused.", moduleId, buttonColors[color1], buttonColors[color2]);
 
-		for(int i = 0; i < btnColors.Length; i++)
+		int[,] colorTable = {
+			{ -1, 1, 0, 0 },
+			{ 1, -1, 1, 3 },
+			{ 0, 2, -1, 2 },
+			{ 3, 3, 2, -1 },
+		};
+		int desiredColor = colorTable[color1, color2];
+
+		unused.Remove(desiredColor);
+		submitList.Add(buttonColors[desiredColor]);
+		Debug.LogFormat("[Module Listening #{0}] The table dictates the desired color to use for the Code 3 is {1}", moduleId, buttonColors[desiredColor]);
+		answerString += codeStrings[Array.IndexOf(btnColors, desiredColor)];
+
+		Debug.LogFormat("[Module Listening #{0}] This leaves the remaining unused color to be {1} for Code 4.", moduleId, buttonColors[unused[0]]);
+		submitList.Add(buttonColors[unused[0]]);
+		answerString += codeStrings[btnColors[unused[0]]];
+
+		foreach (string clr in submitList)
 		{
-			if(!used.Contains(i))
-				if(color1 == -1)
-					color1 = btnColors[i];
-				else
-					color2 = btnColors[i];
+			orderSubmit.Add(buttonColors.ToList().IndexOf(clr));
 		}
 
-		if((color1 == 0 && color2 == 2) || (color1 == 2 && color2 == 0) || (color1 == 0 && color2 == 3))
-		{
-			used.Add(Array.IndexOf(btnColors, 0));
-			for(int i = 0; i < codes[Array.IndexOf(btnColors, 0)].Length; i++)
-					sub.Add(codes[Array.IndexOf(btnColors, 0)][i]);
-		}
-		else if((color1 == 0 && color2 == 1) || (color1 == 1 && color2 == 0) || (color1 == 1 && color2 == 2))
-		{
-			used.Add(Array.IndexOf(btnColors, 1));
-			for(int i = 0; i < codes[Array.IndexOf(btnColors, 1)].Length; i++)
-					sub.Add(codes[Array.IndexOf(btnColors, 1)][i]);
-		}
-		else if((color1 == 2 && color2 == 1) || (color1 == 2 && color2 == 3) || (color1 == 3 && color2 == 2))
-		{
-			used.Add(Array.IndexOf(btnColors, 2));
-			for(int i = 0; i < codes[Array.IndexOf(btnColors, 2)].Length; i++)
-					sub.Add(codes[Array.IndexOf(btnColors, 2)][i]);
-		}
-		else
-		{
-			used.Add(Array.IndexOf(btnColors, 3));
-			for(int i = 0; i < codes[Array.IndexOf(btnColors, 3)].Length; i++)
-					sub.Add(codes[Array.IndexOf(btnColors, 3)][i]);
-		}
-
-		for(int i = 0; i < btnColors.Length; i++)
-		{
-			if(!used.Contains(i))
-			{
-				used.Add(i);
-				for(int j = 0; j < codes[i].Length; j++)
-					sub.Add(codes[i][j]);
-			}
-		}
-
-		answer = sub.ToArray();
-
-        Debug.LogFormat("[Module Listening #{0}] Code submission order is [ {1} ].", moduleId, used.Select(x => buttonMats[btnColors[x]].name).Join(", "));
-        Debug.LogFormat("[Module Listening #{0}] Final submission code is {1}.", moduleId, used.Select(x => codes[x].Select(y => symbols[y]).Join("")).Join("  "));
+        Debug.LogFormat("[Module Listening #{0}] Code submission order: [ {1} ]", moduleId, submitList.Join(", "));
+        Debug.LogFormat("[Module Listening #{0}] Final submission code: [ {1} ]", moduleId, answerString.ToCharArray().Join());
 	}
 
 	IEnumerator ShowCorrectLights(bool[] status)
 	{
 		for(int i = 0; i < status.Length; i++)
 		{
-			if(status[i])
-				correctLights[i].material = lightMats[0];
-			else
-				correctLights[i].material = lightMats[1];
+			correctLights[i].material = status[i] ? lightMats[0] : lightMats[1];
 		}
 
 		yield return new WaitForSeconds(2f);
@@ -956,174 +713,170 @@ public class ModuleListening : MonoBehaviour
         }
     }
 
-    #pragma warning disable 414
-    private readonly string TwitchHelpMessage = @"!{0} play <color>/all [Presses the play button with the specified color (red,blue,green,yellow)/Presses all play buttons in order from left to right] | !{0} press <chars> [Presses the buttons with the specified chars on them (this has to be 20 chars long)]";
-    #pragma warning restore 414
-    IEnumerator ProcessTwitchCommand(string command)
+#pragma warning disable 414
+    private readonly string TwitchHelpMessage = "To play the given tapes: \"!{0} play <color>\" Acceptable color options are red, blue, green, yellow. " +
+		"To play all the tapes from left to right \"!{0} play all\"\n" +
+		"To submit the sequence: \"!{0} press <chars>\" The characters must be on the module and the length must be exactly 20 characters long!";
+	private bool startChallenge = false;
+#pragma warning restore 414
+	IEnumerator TransformModule()
+	{
+		yield return null;
+		for (int x = 0; x <= 60; x++)
+		{
+			lightTransform.intensity = x;
+			yield return new WaitForSeconds(0);
+		}
+		Start();
+		for (int x = 60; x >= 0; x--)
+		{
+			lightTransform.intensity = x;
+			yield return new WaitForSeconds(0);
+		}
+	}
+
+
+	IEnumerator DelayChallenge()
+	{
+		yield return new WaitForSeconds(5);
+		startChallenge = false;
+	}
+	private IEnumerator challgengeHandler;
+
+	IEnumerator ProcessTwitchCommand(string command)
     {
-        if (Regex.IsMatch(command, @"^\s*play all\s*$", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant) || Regex.IsMatch(command, @"^\s*listen all\s*$", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant))
+		command = command.ToLower();
+		if (command.RegexMatch(@"^challengeme$"))
+		{
+			if (challgengeHandler == null)
+				challgengeHandler = DelayChallenge();
+			if (!hardModeEnabled)
+			{
+				if (!startChallenge)
+				{
+					startChallenge = true;
+					yield return "sendtochat Are you sure you want to enable hard mode on Module Listening? Type in the same command within 5 seconds to confirm.";
+					StartCoroutine(challgengeHandler);
+				}
+				else
+				{
+					StopCoroutine(challgengeHandler);
+					hardModeEnabled = true;
+					
+					Debug.LogFormat("[Module Listening #{0}]: Hard mode enabled viva TP command! Restarting entire procedure...",moduleId);
+					StartCoroutine(TransformModule());
+					yield return "sendtochat You have asked for this. Now you're going to pay.";
+				}
+			}
+			else
+				yield return "sendtochaterror Hard mode is already enabled. Can't turn back now, can you?";
+			yield break;
+		}
+		else if (command.RegexMatch(@"^imscared"))
+		{
+			if (challgengeHandler == null)
+				challgengeHandler = DelayChallenge();
+			if (!hardModeEnabled)
+			{
+				if (!startChallenge)
+				{
+					startChallenge = true;
+					yield return "sendtochat Are you sure you want to enable hard mode on Module Listening? Type in the same command within 5 seconds to confirm.";
+					StartCoroutine(challgengeHandler);
+				}
+				else
+				{
+					StopCoroutine(challgengeHandler);
+					hardModeEnabled = true;
+
+					Debug.LogFormat("[Module Listening #{0}]: Hard mode enabled viva TP command! Restarting entire procedure...", moduleId);
+					StartCoroutine(TransformModule());
+					yield return "sendtochat You have asked for this. Now you're going to pay.";
+				}
+			}
+			else
+				yield return "sendtochaterror Hard mode is already enabled. Can't turn back now, can you?";
+			yield break;
+		}
+		else if(command.RegexMatch(@"^play all$"))
         {
             yield return null;
             playBtns[0].OnInteract();
-            while (sound.isPlaying) yield return new WaitForSeconds(0.3f);
+            while (sound.isPlaying) yield return "trycancel";
+			yield return new WaitForSeconds(0.5f);
             playBtns[1].OnInteract();
-            while (sound.isPlaying) yield return new WaitForSeconds(0.3f);
-            playBtns[2].OnInteract();
-            while (sound.isPlaying) yield return new WaitForSeconds(0.3f);
-            playBtns[3].OnInteract();
-            while (sound.isPlaying) yield return new WaitForSeconds(0.3f);
+            while (sound.isPlaying) yield return "trycancel";
+			yield return new WaitForSeconds(0.5f);
+			playBtns[2].OnInteract();
+            while (sound.isPlaying) yield return "trycancel";
+			yield return new WaitForSeconds(0.5f);
+			playBtns[3].OnInteract();
             yield break;
         }
-        if (Regex.IsMatch(command, @"^\s*play blue\s*$", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant) || Regex.IsMatch(command, @"^\s*listen blue\s*$", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant))
+		else if (command.RegexMatch(@"^play blue$"))
         {
             yield return null;
-            if (cassetteMats[btnColors[0]].name.EqualsIgnoreCase("blue_tape"))
-            {
-                playBtns[0].OnInteract();
-            }
-            else if (cassetteMats[btnColors[1]].name.EqualsIgnoreCase("blue_tape"))
-            {
-                playBtns[1].OnInteract();
-            }
-            else if (cassetteMats[btnColors[2]].name.EqualsIgnoreCase("blue_tape"))
-            {
-                playBtns[2].OnInteract();
-            }
-            else if (cassetteMats[btnColors[3]].name.EqualsIgnoreCase("blue_tape"))
-            {
-                playBtns[3].OnInteract();
-            }
-            while (sound.isPlaying) yield return new WaitForSeconds(0.3f);
+                playBtns[btnColors.ToList().IndexOf(2)].OnInteract();
             yield break;
         }
-        if (Regex.IsMatch(command, @"^\s*play red\s*$", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant) || Regex.IsMatch(command, @"^\s*listen red\s*$", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant))
+		else if (command.RegexMatch(@"^play red$"))
         {
             yield return null;
-            if (cassetteMats[btnColors[0]].name.EqualsIgnoreCase("red_tape"))
-            {
-                playBtns[0].OnInteract();
-            }
-            else if (cassetteMats[btnColors[1]].name.EqualsIgnoreCase("red_tape"))
-            {
-                playBtns[1].OnInteract();
-            }
-            else if (cassetteMats[btnColors[2]].name.EqualsIgnoreCase("red_tape"))
-            {
-                playBtns[2].OnInteract();
-            }
-            else if (cassetteMats[btnColors[3]].name.EqualsIgnoreCase("red_tape"))
-            {
-                playBtns[3].OnInteract();
-            }
-            while (sound.isPlaying) yield return new WaitForSeconds(0.3f);
-            yield break;
+				playBtns[btnColors.ToList().IndexOf(0)].OnInteract();
+			yield break;
         }
-        if (Regex.IsMatch(command, @"^\s*play green\s*$", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant) || Regex.IsMatch(command, @"^\s*listen green\s*$", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant))
+		else if (command.RegexMatch(@"^play green$"))
         {
             yield return null;
-            if (cassetteMats[btnColors[0]].name.EqualsIgnoreCase("green_tape"))
-            {
-                playBtns[0].OnInteract();
-            }
-            else if (cassetteMats[btnColors[1]].name.EqualsIgnoreCase("green_tape"))
-            {
-                playBtns[1].OnInteract();
-            }
-            else if (cassetteMats[btnColors[2]].name.EqualsIgnoreCase("green_tape"))
-            {
-                playBtns[2].OnInteract();
-            }
-            else if (cassetteMats[btnColors[3]].name.EqualsIgnoreCase("green_tape"))
-            {
-                playBtns[3].OnInteract();
-            }
-            while (sound.isPlaying) yield return new WaitForSeconds(0.3f);
-            yield break;
+				playBtns[btnColors.ToList().IndexOf(1)].OnInteract();
+			yield break;
         }
-        if (Regex.IsMatch(command, @"^\s*play yellow\s*$", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant) || Regex.IsMatch(command, @"^\s*listen yellow\s*$", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant))
+		else if (command.RegexMatch(@"^play yellow$"))
         {
             yield return null;
-            if (cassetteMats[btnColors[0]].name.EqualsIgnoreCase("yellow_tape"))
-            {
-                playBtns[0].OnInteract();
-            }
-            else if (cassetteMats[btnColors[1]].name.EqualsIgnoreCase("yellow_tape"))
-            {
-                playBtns[1].OnInteract();
-            }
-            else if (cassetteMats[btnColors[2]].name.EqualsIgnoreCase("yellow_tape"))
-            {
-                playBtns[2].OnInteract();
-            }
-            else if (cassetteMats[btnColors[3]].name.EqualsIgnoreCase("yellow_tape"))
-            {
-                playBtns[3].OnInteract();
-            }
-            while (sound.isPlaying) yield return new WaitForSeconds(0.3f);
-            yield break;
+				playBtns[btnColors.ToList().IndexOf(3)].OnInteract();
+			yield break;
         }
         string[] parameters = command.Split(' ');
-        if (Regex.IsMatch(parameters[0], @"^\s*press\s*$", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant))
+        if (command.StartsWith("press "))
         {
-            if (parameters.Length >= 2)
-            {
-                string sub = command.Substring(6);
-                sub = sub.Replace(" ", "");
-                parameters[1] = sub;
-                if (cmdIsValid(parameters[1]))
-                {
-                    yield return null;
-                    for(int i = 0; i < parameters[1].Length; i++)
-                    {
-                        if (parameters[1].ElementAt(i).Equals('!'))
-                        {
-                            symbolBtns[0].OnInteract();
-                        }
-                        else if (parameters[1].ElementAt(i).Equals('@'))
-                        {
-                            symbolBtns[1].OnInteract();
-                        }
-                        else if (parameters[1].ElementAt(i).Equals('%'))
-                        {
-                            symbolBtns[2].OnInteract();
-                        }
-                        else if (parameters[1].ElementAt(i).Equals('^'))
-                        {
-                            symbolBtns[3].OnInteract();
-                        }
-                        else if (parameters[1].ElementAt(i).Equals('('))
-                        {
-                            symbolBtns[4].OnInteract();
-                        }
-                        else if (parameters[1].ElementAt(i).Equals('_'))
-                        {
-                            symbolBtns[5].OnInteract();
-                        }
-                        else if (parameters[1].ElementAt(i).Equals('|'))
-                        {
-                            symbolBtns[6].OnInteract();
-                        }
-                        else if (parameters[1].ElementAt(i).Equals('\\'))
-                        {
-                            symbolBtns[7].OnInteract();
-                        }
-                        else if (parameters[1].ElementAt(i).Equals('\''))
-                        {
-                            symbolBtns[8].OnInteract();
-                        }
-                        else if (parameters[1].ElementAt(i).Equals('<'))
-                        {
-                            symbolBtns[9].OnInteract();
-                        }
-                        yield return new WaitForSeconds(0.1f);
-                    }
-                }
-                else
-                {
-                    yield return "sendtochaterror One of the character's is not valid or you did not give me 20 characters to press!";
-                }
-            }
-            yield break;
+			string[] sub = command.Substring(6).Split();
+			List<int> buttonPresses = new List<int>();
+			string symbols = "!@%^(_|\\\'<";
+			
+
+			foreach (string part in sub)
+			{
+				for (int x = 0; x < part.Length; x++)
+				{
+					if (symbols.Contains(part[x]))
+					{
+						buttonPresses.Add(symbols.IndexOf(part[x]));
+					}
+					else
+					{
+						yield return "sendtochaterror The given character \""+ part[x] +"\" does not match any of the symbol buttons!";
+					}
+				}
+			}
+			if (buttonPresses.Count != 20)
+			{
+				yield return "sendtochaterror You did not request exactly 20 characters for the module to answer!";
+			}
+			// PPA functionality, in case of anyone activating Hard Mode
+			List<int> correctAnswerInterepted = new List<int>();
+			foreach (char sym in answerString)
+				correctAnswerInterepted.Add(symbols.IndexOf(sym));
+			for (int x = 0; x < buttonPresses.Count; x++)
+			{
+				
+				if (correctAnswerInterepted.SequenceEqual(buttonPresses) && hardModeEnabled && x == 19)
+					yield return "awardpoints 5";
+				yield return null;
+				symbolBtns[buttonPresses[x]].OnInteract();
+				yield return new WaitForSeconds(0.1f);
+			}
+			yield break;
         }
     }
 }

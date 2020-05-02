@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -88,6 +88,7 @@ LightmapSettings:
     m_PVRFilteringAtrousPositionSigmaDirect: 0.5
     m_PVRFilteringAtrousPositionSigmaIndirect: 2
     m_PVRFilteringAtrousPositionSigmaAO: 1
+    m_ShowResolutionOverlay: 1
   m_LightingDataAsset: {fileID: 0}
   m_UseShadowmask: 1
 --- !u!196 &4
@@ -109,6 +110,8 @@ NavMeshSettings:
     manualTileSize: 0
     tileSize: 256
     accuratePlacement: 0
+    debug:
+      m_Flags: 0
   m_NavMeshData: {fileID: 0}
 --- !u!1001 &221982058
 Prefab:
@@ -117,11 +120,6 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 114189083327926310, guid: 52a5b78c9e78e1f40b89b848dc2909cb,
-        type: 2}
-      propertyPath: Hexamaze.Array.size
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4543145958505966, guid: 52a5b78c9e78e1f40b89b848dc2909cb, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -154,61 +152,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 114189083327926310, guid: 52a5b78c9e78e1f40b89b848dc2909cb,
-        type: 2}
-      propertyPath: Hexamaze.Array.data[2]
-      value: 
-      objectReference: {fileID: 8300000, guid: 031f65fdf6210d04584bf49159281c28, type: 3}
-    - target: {fileID: 114189083327926310, guid: 52a5b78c9e78e1f40b89b848dc2909cb,
-        type: 2}
-      propertyPath: Hexamaze.Array.data[3]
-      value: 
-      objectReference: {fileID: 8300000, guid: 031f65fdf6210d04584bf49159281c28, type: 3}
-    - target: {fileID: 114189083327926310, guid: 52a5b78c9e78e1f40b89b848dc2909cb,
-        type: 2}
-      propertyPath: Hexamaze.Array.data[4]
-      value: 
-      objectReference: {fileID: 8300000, guid: 031f65fdf6210d04584bf49159281c28, type: 3}
-    - target: {fileID: 114189083327926310, guid: 52a5b78c9e78e1f40b89b848dc2909cb,
-        type: 2}
-      propertyPath: Hexamaze.Array.data[5]
-      value: 
-      objectReference: {fileID: 8300000, guid: 031f65fdf6210d04584bf49159281c28, type: 3}
-    - target: {fileID: 114189083327926310, guid: 52a5b78c9e78e1f40b89b848dc2909cb,
-        type: 2}
-      propertyPath: Hexamaze.Array.data[6]
-      value: 
-      objectReference: {fileID: 8300000, guid: 031f65fdf6210d04584bf49159281c28, type: 3}
-    - target: {fileID: 114189083327926310, guid: 52a5b78c9e78e1f40b89b848dc2909cb,
-        type: 2}
-      propertyPath: Hexamaze.Array.data[7]
-      value: 
-      objectReference: {fileID: 8300000, guid: 031f65fdf6210d04584bf49159281c28, type: 3}
-    - target: {fileID: 114189083327926310, guid: 52a5b78c9e78e1f40b89b848dc2909cb,
-        type: 2}
-      propertyPath: Hexamaze.Array.data[8]
-      value: 
-      objectReference: {fileID: 8300000, guid: 031f65fdf6210d04584bf49159281c28, type: 3}
-    - target: {fileID: 114189083327926310, guid: 52a5b78c9e78e1f40b89b848dc2909cb,
-        type: 2}
-      propertyPath: Hexamaze.Array.data[9]
-      value: 
-      objectReference: {fileID: 8300000, guid: 031f65fdf6210d04584bf49159281c28, type: 3}
-    - target: {fileID: 114189083327926310, guid: 52a5b78c9e78e1f40b89b848dc2909cb,
-        type: 2}
-      propertyPath: Hexamaze.Array.data[10]
-      value: 
-      objectReference: {fileID: 8300000, guid: 031f65fdf6210d04584bf49159281c28, type: 3}
-    - target: {fileID: 114189083327926310, guid: 52a5b78c9e78e1f40b89b848dc2909cb,
-        type: 2}
-      propertyPath: Hexamaze.Array.data[11]
-      value: 
-      objectReference: {fileID: 8300000, guid: 031f65fdf6210d04584bf49159281c28, type: 3}
-    - target: {fileID: 114189083327926310, guid: 52a5b78c9e78e1f40b89b848dc2909cb,
-        type: 2}
-      propertyPath: Hexamaze.Array.data[1]
-      value: 
-      objectReference: {fileID: 8300000, guid: 031f65fdf6210d04584bf49159281c28, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 52a5b78c9e78e1f40b89b848dc2909cb, type: 2}
   m_IsPrefabParent: 0
@@ -283,11 +226,11 @@ Camera:
   m_TargetEye: 3
   m_HDR: 1
   m_AllowMSAA: 1
+  m_AllowDynamicResolution: 0
   m_ForceIntoRT: 0
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
-  m_StereoMirrorMode: 0
 --- !u!4 &579923852
 Transform:
   m_ObjectHideFlags: 0
@@ -413,7 +356,7 @@ Prefab:
     - target: {fileID: 114848120511536268, guid: 8814ea52310d2614a9feda02ec355ae4,
         type: 2}
       propertyPath: TwitchPlaysActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114848120511536268, guid: 8814ea52310d2614a9feda02ec355ae4,
         type: 2}
@@ -3885,6 +3828,11 @@ Prefab:
       propertyPath: AudioClips.Array.data[693]
       value: 
       objectReference: {fileID: 8300000, guid: 2fb8d1ff8e81a2942b48730aad01f27a, type: 3}
+    - target: {fileID: 114848120511536268, guid: 8814ea52310d2614a9feda02ec355ae4,
+        type: 2}
+      propertyPath: AudioVolume
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8814ea52310d2614a9feda02ec355ae4, type: 2}
   m_IsPrefabParent: 0
