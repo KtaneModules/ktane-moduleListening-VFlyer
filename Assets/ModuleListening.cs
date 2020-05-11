@@ -668,7 +668,7 @@ public class ModuleListening : MonoBehaviour
 
 		Debug.LogFormat("[Module Listening #{0}] This leaves the remaining unused color to be {1} for Code 4.", moduleId, buttonColors[unused[0]]);
 		submitList.Add(buttonColors[unused[0]]);
-		answerString += codeStrings[btnColors[unused[0]]];
+		answerString += codeStrings[Array.IndexOf(btnColors,unused[0])];
 
 		foreach (string clr in submitList)
 		{
