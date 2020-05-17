@@ -5575,7 +5575,8 @@ MonoBehaviour:
   StreetFighter:
   - {fileID: 8300000, guid: 5c8ab11544dab5d49832cee9d97ef99c, type: 3}
   - {fileID: 8300000, guid: 16bb1634cca436944991eabc5004e872, type: 3}
-  Sun: []
+  Sun:
+  - {fileID: 8300000, guid: 82028ed3f4349d944acbf4efb9ca5301, type: 3}
   Swan:
   - {fileID: 8300000, guid: 51154dc9b0f09db4d9d59080296cced3, type: 3}
   - {fileID: 8300000, guid: 0643466965772574baf510583238ff92, type: 3}

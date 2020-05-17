@@ -776,26 +776,26 @@ public class ModuleListening : MonoBehaviour
 		{
 			if (challgengeHandler == null)
 				challgengeHandler = DelayChallenge();
-			if (!hardModeEnabled)
+			if (hardModeEnabled)
 			{
 				if (!startChallenge)
 				{
 					startChallenge = true;
-					yield return "sendtochat Are you sure you want to enable hard mode on Module Listening? Type in the same command within 5 seconds to confirm.";
+					yield return "sendtochat Are you sure you want to disable hard mode on Module Listening? Type in the same command within 5 seconds to confirm.";
 					StartCoroutine(challgengeHandler);
 				}
 				else
 				{
 					StopCoroutine(challgengeHandler);
-					hardModeEnabled = true;
+					hardModeEnabled = false;
 
-					Debug.LogFormat("[Module Listening #{0}]: Hard mode enabled viva TP command! Restarting entire procedure...", moduleId);
+					Debug.LogFormat("[Module Listening #{0}]: Hard mode disabled viva TP command! Restarting entire procedure...", moduleId);
 					StartCoroutine(TransformModule());
-					yield return "sendtochat You have asked for this. Now you're going to pay.";
+					yield return "sendtochat You'll be fine now.";
 				}
 			}
 			else
-				yield return "sendtochaterror Hard mode is already enabled. Can't turn back now, can you?";
+				yield return "sendtochaterror Hard mode is already disabled.";
 			yield break;
 		}
 		else if(command.RegexMatch(@"^play all$"))
