@@ -117,7 +117,7 @@ public class ModuleListening : MonoBehaviour
 
 	public List<int> orderSubmit = new List<int>();
 
-	bool hardModeEnabled = false; // TP handling only atm, may try to add config down the line
+	bool hardModeEnabled = false, interactable = false; // TP handling only atm, may try to add config down the line
 
 	List<int> input = new List<int>();
 
@@ -586,14 +586,14 @@ public class ModuleListening : MonoBehaviour
 		for (int i = 0; i < moduleIndex.Length; i++)
 			if (bombModIDs.Contains(moduleIds[moduleIndex[i]]))
 			{
-				unused.Remove(i);
+				unused.RemoveAt(i);
 				submitList.Add(buttonColors[btnColors[i]]);
 				Debug.LogFormat("[Module Listening #{0}] The {1} play button is the left-most button that have sounds from the module that is present on the bomb.", moduleId, buttonColors[btnColors[i]]);
 				answerString += codeStrings[i];
 
 				break;
 			}
-
+		
 		if (unused.Count() == 4)
 		{
 			submitList.Add(buttonColors[unused[0]]);
@@ -601,7 +601,7 @@ public class ModuleListening : MonoBehaviour
 			Debug.LogFormat("[Module Listening #{0}] No play buttons contain a sound from a module on the bomb. The left-most play button used is {1}.", moduleId, buttonColors[btnColors[0]]);
 			answerString += codeStrings[0];
 		}
-
+		//Debug.Log(unused.Join());   // Log the unused list up to the end of the 1st part.
 		if ((bomb.IsIndicatorPresent(Indicator.FRK) || bomb.IsIndicatorPresent(Indicator.TRN)) && unused.Contains(0))
 		{
 			Debug.LogFormat("[Module Listening #{0}] There is a TRN/FRK indicator and red is not used yet.", moduleId);
@@ -632,23 +632,27 @@ public class ModuleListening : MonoBehaviour
 		}
 		else
 		{
+
 			string cmp = "";
 			int best = -1;
 			for (int i = 0; i < unused.Count; i++)
 			{
-
-				if (cmp.Length == 0 || string.Compare(moduleNames[moduleIndex[unused[i]]].Replace("The ",""), cmp, StringComparison.OrdinalIgnoreCase) < 0)
+				string ModNameDisplay = moduleNames[moduleIndex[Array.IndexOf(btnColors, unused[i])]].Replace("The ", "");
+				//Debug.Log(ModNameDisplay);
+				if (cmp.Length == 0 || string.Compare(ModNameDisplay, cmp, StringComparison.OrdinalIgnoreCase) < 0)
 				{
-					cmp = moduleNames[moduleIndex[unused[i]]].Replace("The ", "");
-					best = i;
+					//Debug.Log(ModNameDisplay + " < " + cmp);
+					cmp = ModNameDisplay;
+					best = unused[i];
 				}
 			}
-			Debug.LogFormat("[Module Listening #{0}] No available colors from the provided conditions, the {1} play button has the module that comes first alphabetically.", moduleId, buttonColors[btnColors[best]]);
-			unused.Remove(btnColors[best]);
-			submitList.Add(buttonColors[btnColors[best]]);
-			answerString += codeStrings[Array.IndexOf(btnColors, best)];
+			int idxBest = Array.IndexOf(btnColors, best);
+			Debug.LogFormat("[Module Listening #{0}] No available colors from the provided conditions, the {1} play button has the module that comes first alphabetically.", moduleId, buttonColors[btnColors[idxBest]]);
+			unused.Remove(best);
+			submitList.Add(buttonColors[btnColors[idxBest]]);
+			answerString += codeStrings[idxBest];
 		}
-
+		//Debug.Log(unused.Join()); // Log the unused list up to the end of the 2nd part.
 		int color1 = unused[0];
 		int color2 = unused[1];
 		Debug.LogFormat("[Module Listening #{0}] The {1} play button is the left-most unused. The {2} play button is the right-most unused.", moduleId, buttonColors[color1], buttonColors[color2]);
@@ -693,7 +697,7 @@ public class ModuleListening : MonoBehaviour
 	}
 
     //twitch plays
-    private bool cmdIsValid(string cmd)
+/*    private bool cmdIsValid(string cmd)
     {
         char[] valids = { '!', '@', '%', '^', '(', '_', '|', '\\', '\'', '<' };
         if (cmd.Length == 20)
@@ -711,7 +715,7 @@ public class ModuleListening : MonoBehaviour
         {
             return false;
         }
-    }
+    }*/
 
 #pragma warning disable 414
     private readonly string TwitchHelpMessage = "To play the given tapes: \"!{0} play <color>\" Acceptable color options are red, blue, green, yellow. " +
@@ -721,6 +725,7 @@ public class ModuleListening : MonoBehaviour
 #pragma warning restore 414
 	IEnumerator TransformModule()
 	{
+		interactable = false;
 		yield return null;
 		for (int x = 0; x <= 60; x++)
 		{
@@ -728,6 +733,7 @@ public class ModuleListening : MonoBehaviour
 			yield return new WaitForSeconds(0);
 		}
 		Start();
+		interactable = true;
 		for (int x = 60; x >= 0; x--)
 		{
 			lightTransform.intensity = x;
@@ -741,31 +747,37 @@ public class ModuleListening : MonoBehaviour
 		yield return new WaitForSeconds(5);
 		startChallenge = false;
 	}
-	private IEnumerator challgengeHandler;
+	private IEnumerator challengeHandler;
 
 	IEnumerator ProcessTwitchCommand(string command)
     {
 		command = command.ToLower();
+		if (!interactable)
+		{
+			yield return "sentochaterror This module is not interactable at the moment. Wait for a bit until the module is interactable again.";
+			yield break;
+		}
+
 		if (command.RegexMatch(@"^challengeme$"))
 		{
-			if (challgengeHandler == null)
-				challgengeHandler = DelayChallenge();
+			if (challengeHandler == null)
+				challengeHandler = DelayChallenge();
 			if (!hardModeEnabled)
 			{
 				if (!startChallenge)
 				{
 					startChallenge = true;
 					yield return "sendtochat Are you sure you want to enable hard mode on Module Listening? Type in the same command within 5 seconds to confirm.";
-					StartCoroutine(challgengeHandler);
+					StartCoroutine(challengeHandler);
 				}
 				else
 				{
-					StopCoroutine(challgengeHandler);
+					StopCoroutine(challengeHandler);
 					hardModeEnabled = true;
-					
+					startChallenge = false;
 					Debug.LogFormat("[Module Listening #{0}]: Hard mode enabled viva TP command! Restarting entire procedure...",moduleId);
 					StartCoroutine(TransformModule());
-					yield return "sendtochat You have asked for this. Now you're going to pay.";
+					yield return "sendtochat You have asked for this.";
 				}
 			}
 			else
@@ -774,21 +786,21 @@ public class ModuleListening : MonoBehaviour
 		}
 		else if (command.RegexMatch(@"^imscared"))
 		{
-			if (challgengeHandler == null)
-				challgengeHandler = DelayChallenge();
+			if (challengeHandler == null)
+				challengeHandler = DelayChallenge();
 			if (hardModeEnabled)
 			{
 				if (!startChallenge)
 				{
 					startChallenge = true;
 					yield return "sendtochat Are you sure you want to disable hard mode on Module Listening? Type in the same command within 5 seconds to confirm.";
-					StartCoroutine(challgengeHandler);
+					StartCoroutine(challengeHandler);
 				}
 				else
 				{
-					StopCoroutine(challgengeHandler);
+					StopCoroutine(challengeHandler);
 					hardModeEnabled = false;
-
+					startChallenge = false;
 					Debug.LogFormat("[Module Listening #{0}]: Hard mode disabled viva TP command! Restarting entire procedure...", moduleId);
 					StartCoroutine(TransformModule());
 					yield return "sendtochat You'll be fine now.";
