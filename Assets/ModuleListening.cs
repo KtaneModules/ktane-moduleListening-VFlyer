@@ -117,7 +117,7 @@ public class ModuleListening : MonoBehaviour
 
 	public List<int> orderSubmit = new List<int>();
 
-	bool hardModeEnabled = false, interactable = false; // TP handling only atm, may try to add config down the line
+	bool hardModeEnabled = false, interactable = true; // TP handling only atm, may try to add config down the line
 
 	List<int> input = new List<int>();
 
@@ -723,6 +723,20 @@ public class ModuleListening : MonoBehaviour
 		"To submit the sequence: \"!{0} press <chars>\" The characters must be on the module and the length must be exactly 20 characters long!";
 	private bool startChallenge = false;
 #pragma warning restore 414
+
+	IEnumerator TwitchHandleForcedSolve()
+	{
+		playBtns[0].OnInteract();
+		yield return new WaitForSeconds(0);
+		foreach (char answerPart in answerString)
+		{
+			int idx = symbols.IndexOf(answerPart);
+			symbolBtns[idx].OnInteract();
+			yield return new WaitForSeconds(0);
+		}
+		yield return true;
+	}
+
 	IEnumerator TransformModule()
 	{
 		interactable = false;
@@ -741,7 +755,6 @@ public class ModuleListening : MonoBehaviour
 		}
 	}
 
-
 	IEnumerator DelayChallenge()
 	{
 		yield return new WaitForSeconds(5);
@@ -754,7 +767,7 @@ public class ModuleListening : MonoBehaviour
 		command = command.ToLower();
 		if (!interactable)
 		{
-			yield return "sentochaterror This module is not interactable at the moment. Wait for a bit until the module is interactable again.";
+			yield return "sendochaterror This module is not interactable at the moment. Wait for a bit until the module is interactable again.";
 			yield break;
 		}
 
@@ -767,7 +780,7 @@ public class ModuleListening : MonoBehaviour
 				if (!startChallenge)
 				{
 					startChallenge = true;
-					yield return "sendtochat Are you sure you want to enable hard mode on Module Listening? Type in the same command within 5 seconds to confirm.";
+					yield return "sendtochat {0}? Are you sure you want to enable hard mode on Module Listening? Type in the same command within 5 seconds to confirm.";
 					StartCoroutine(challengeHandler);
 				}
 				else
@@ -793,7 +806,7 @@ public class ModuleListening : MonoBehaviour
 				if (!startChallenge)
 				{
 					startChallenge = true;
-					yield return "sendtochat Are you sure you want to disable hard mode on Module Listening? Type in the same command within 5 seconds to confirm.";
+					yield return "sendtochat {0}? Are you sure you want to disable hard mode on Module Listening? Type in the same command within 5 seconds to confirm.";
 					StartCoroutine(challengeHandler);
 				}
 				else
