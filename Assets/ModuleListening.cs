@@ -188,7 +188,7 @@ public class ModuleListening : MonoBehaviour
 			{
 				bool[] lightStatus = { true, true, true, true };
 				for (int x = 0; x < lightStatus.Length; x++)
-					lightStatus[orderSubmit[x]] = answerString.Substring(x * 5, 5).SequenceEqual(inputString.Substring(x * 5, 5));
+					lightStatus[Array.IndexOf(btnColors,orderSubmit[x])] = answerString.Substring(x * 5, 5).SequenceEqual(inputString.Substring(x * 5, 5));
 
 				StartCoroutine(ShowCorrectLights(lightStatus));
 
