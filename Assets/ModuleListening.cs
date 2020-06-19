@@ -119,6 +119,8 @@ public class ModuleListening : MonoBehaviour
 
 	bool hardModeEnabled = false, interactable = true; // TP handling only atm, may try to add config down the line
 
+	ModuleListeningSettings localSettings = new ModuleListeningSettings();
+
 	List<int> input = new List<int>();
 
 	public List<string> grabModuleSoundsAll()
@@ -129,22 +131,22 @@ public class ModuleListening : MonoBehaviour
 		return output;
 	}
 
+
 	void Awake()
 	{
 		moduleId = moduleIdCounter++;
+		try
+		{
+			ModConfig<ModuleListeningSettings> modConfig = new ModConfig<ModuleListeningSettings>("ModuleListeningSettings");
+			localSettings = modConfig.Settings;
 
-		for (int x = 0; x < playBtns.Length; x++)
-		{
-			int y = x;
-			playBtns[x].OnInteract += delegate { PressPlay(y); return false; };
+			hardModeEnabled = localSettings.enableHardMode;
 		}
-		for (int x = 0; x < symbolBtns.Length; x++)
+		catch
 		{
-			int y = x;
-			symbolBtns[x].OnInteract += delegate { PressSymbol(y); return false; };
+			Debug.LogWarningFormat("[Module Listening #{0}] Warning! Settings for Module Listening do not work as intended! Using default settings instead.",moduleId);
+			hardModeEnabled = false;
 		}
-		float scale = transform.lossyScale.x;
-		lightTransform.range *= scale;
 	}
 
 	void PressPlay(int btn)
@@ -205,6 +207,18 @@ public class ModuleListening : MonoBehaviour
 
 	void Start () 
 	{
+		for (int x = 0; x < playBtns.Length; x++)
+		{
+			int y = x;
+			playBtns[x].OnInteract += delegate { PressPlay(y); return false; };
+		}
+		for (int x = 0; x < symbolBtns.Length; x++)
+		{
+			int y = x;
+			symbolBtns[x].OnInteract += delegate { PressSymbol(y); return false; };
+		}
+		float scale = transform.lossyScale.x;
+		lightTransform.range *= scale;
 		LoadAudioLibrary();
 		SetUpButtons();
 		if (hardModeEnabled) {
@@ -694,6 +708,12 @@ public class ModuleListening : MonoBehaviour
 
 		for(int i = 0; i < status.Length; i++)
 			correctLights[i].material = lightMats[2];
+	}
+
+
+	public class ModuleListeningSettings
+	{
+		public bool enableHardMode = false;
 	}
 
     //twitch plays
