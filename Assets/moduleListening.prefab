@@ -4848,7 +4848,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bomb: {fileID: 114382315774619326}
-  Audio: {fileID: 114614747596665788}
+  mAudio: {fileID: 114614747596665788}
+  modSelf: {fileID: 114682943674607128}
   AMistake:
   - {fileID: 8300000, guid: 75a7625eeb349004bb4c8367cde8ed6a, type: 3}
   Bartending:
@@ -5663,6 +5664,7 @@ MonoBehaviour:
   - {fileID: 2100000, guid: d31a5b3c5dd69904f982273b9066ef03, type: 2}
   - {fileID: 2100000, guid: ed22a1ab14d62094fa8d56b5d13cdab8, type: 2}
   - {fileID: 2100000, guid: 6461fd23d647a554eb2d80ba5b44d348, type: 2}
+  - {fileID: 2100000, guid: 60bff36af14d9ad46967c9e18043e3aa, type: 2}
   cassette: {fileID: 1725367513532924}
   cassetteMats:
   - {fileID: 2100000, guid: 2858174f5a5a7c046a46b5661c0f773e, type: 2}
@@ -5676,14 +5678,6 @@ MonoBehaviour:
   - {fileID: 23110080954307292}
   backing: {fileID: 23892374543637378}
   lightTransform: {fileID: 108147069622188414}
-  moduleSelectedNames:
-  - 
-  - 
-  - 
-  - 
-  answerString: 
-  inputString: 
-  orderSubmit: 
 --- !u!114 &114206614837954542
 MonoBehaviour:
   m_ObjectHideFlags: 1

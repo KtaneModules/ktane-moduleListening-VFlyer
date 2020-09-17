@@ -10,7 +10,8 @@ using System.Text.RegularExpressions;
 public class ModuleListening : MonoBehaviour 
 {
 	public KMBombInfo bomb;
-	public KMAudio Audio;
+	public KMAudio mAudio;
+	public KMBombModule modSelf;
 
 	readonly string symbols = "!@%^(_|\\\'<";
 
@@ -111,16 +112,16 @@ public class ModuleListening : MonoBehaviour
 	string[] codeStrings = new string[4];
 
 	string[] buttonColors = { "red", "green", "blue", "yellow" };
-	public string[] moduleSelectedNames = new string[4];
-	public string answerString;
-	public string inputString;
+	string[] moduleSelectedNames = new string[4];
+	string answerString;
+	string inputString;
 
-	public List<int> orderSubmit = new List<int>();
+	List<int> orderSubmit = new List<int>();
 
-	bool hardModeEnabled = false, interactable = true; // TP handling only atm, may try to add config down the line
+	bool hardModeEnabled = false, interactable = true, canEnterHardMode = true, canTPEnterHardMode; // TP handling only atm, may try to add config down the line
 
 	ModuleListeningSettings localSettings = new ModuleListeningSettings();
-
+	int PPAValue;
 	List<int> input = new List<int>();
 
 	public List<string> grabModuleSoundsAll()
@@ -141,33 +142,39 @@ public class ModuleListening : MonoBehaviour
 			localSettings = modConfig.Settings;
 
 			hardModeEnabled = localSettings.enableHardMode;
+			canTPEnterHardMode = !localSettings.noTPHardMode;
+			PPAValue = localSettings.TPRewardBonus;
 		}
 		catch
 		{
 			Debug.LogWarningFormat("[Module Listening #{0}] Warning! Settings for Module Listening do not work as intended! Using default settings instead.",moduleId);
 			hardModeEnabled = false;
+			canTPEnterHardMode = true;
+			PPAValue = 5;
 		}
 	}
 
 	void PressPlay(int btn)
 	{
 		playBtns[btn].AddInteractionPunch(.5f);
-
+		canEnterHardMode = false;
 		cassette.GetComponentInChildren<Renderer>().material = cassetteMats[btnColors[btn]];
 		if (moduleSolved)
 		{
-			GetComponent<KMAudio>().PlayGameSoundAtTransform(KMSoundOverride.SoundEffect.ButtonRelease, transform);
+			mAudio.PlayGameSoundAtTransform(KMSoundOverride.SoundEffect.ButtonRelease, transform);
 			return;
 		}
 		inputString = "";
 		sound.clip = audioLibrary[moduleIndex[btn]][soundIndex[btn]];
 		sound.Play();
 		input.Clear();
+		foreach (Renderer r in correctLights)
+			r.material = lightMats[2];
 	}
 
 	void PressSymbol(int btn)
 	{
-		GetComponent<KMAudio>().PlayGameSoundAtTransform(KMSoundOverride.SoundEffect.ButtonPress, transform);
+		mAudio.PlayGameSoundAtTransform(KMSoundOverride.SoundEffect.ButtonPress, transform);
 		symbolBtns[btn].AddInteractionPunch(.5f);
 
 		if(moduleSolved)
@@ -175,15 +182,15 @@ public class ModuleListening : MonoBehaviour
 
 		inputString += symbols[btn];
 
-		if(inputString.Length == 20)
+		if(inputString.Length >= 20)
 		{
 			if(inputString.ToCharArray().SequenceEqual(answerString.ToCharArray()))
 			{
 				foreach(Renderer r in correctLights)
 					r.material = lightMats[0];
-				GetComponent<KMAudio>().PlayGameSoundAtTransform(KMSoundOverride.SoundEffect.CorrectChime, transform);
+				mAudio.PlayGameSoundAtTransform(KMSoundOverride.SoundEffect.CorrectChime, transform);
         		Debug.LogFormat("[Module Listening #{0}] Entire input is correct. Module solved.", moduleId);
-				GetComponent<KMBombModule>().HandlePass();
+				modSelf.HandlePass();
 				moduleSolved = true;
 			}
 			else
@@ -195,14 +202,19 @@ public class ModuleListening : MonoBehaviour
 				StartCoroutine(ShowCorrectLights(lightStatus));
 
         		Debug.LogFormat("[Module Listening #{0}] Strike! Received input: [ {1} ].", moduleId, inputString.ToCharArray().Join());
-				GetComponent<KMBombModule>().HandleStrike();
+				modSelf.HandleStrike();
 				inputString = "";
 			}
 		}
 		else if(inputString.Length % 5 == 0)
 		{
-			Audio.PlaySoundAtTransform("ding", transform);
-		}
+			mAudio.PlaySoundAtTransform("ding", transform);
+            for (int i = 0; i < inputString.Length / 5; i++)
+            {
+                Renderer r = correctLights[i];
+                r.material = lightMats[3];
+            }
+        }
 	}
 
 	void Start () 
@@ -225,6 +237,10 @@ public class ModuleListening : MonoBehaviour
 			CalcModifications();
 			backing.material.color = Color.red;
 		}
+		else
+        {
+			backing.material.color = Color.white;
+        }
 		CalcSubmission();
 	}
 
@@ -695,6 +711,7 @@ public class ModuleListening : MonoBehaviour
 
         Debug.LogFormat("[Module Listening #{0}] Code submission order: [ {1} ]", moduleId, submitList.Join(", "));
         Debug.LogFormat("[Module Listening #{0}] Final submission code: [ {1} ]", moduleId, answerString.ToCharArray().Join());
+		interactable = true;
 	}
 
 	IEnumerator ShowCorrectLights(bool[] status)
@@ -714,6 +731,8 @@ public class ModuleListening : MonoBehaviour
 	public class ModuleListeningSettings
 	{
 		public bool enableHardMode = false;
+		public bool noTPHardMode = false;
+		public int TPRewardBonus = 5;
 	}
 
     //twitch plays
@@ -746,13 +765,15 @@ public class ModuleListening : MonoBehaviour
 
 	IEnumerator TwitchHandleForcedSolve()
 	{
-		playBtns[0].OnInteract();
-		yield return new WaitForSeconds(0);
+		yield return null;
+		if (!string.IsNullOrEmpty(inputString))
+			playBtns[rnd.Range(0, 4)].OnInteract();
+		yield return null;
 		foreach (char answerPart in answerString)
 		{
 			int idx = symbols.IndexOf(answerPart);
 			symbolBtns[idx].OnInteract();
-			yield return new WaitForSeconds(0);
+			yield return null;
 		}
 		yield return true;
 	}
@@ -797,8 +818,19 @@ public class ModuleListening : MonoBehaviour
 				challengeHandler = DelayChallenge();
 			if (!hardModeEnabled)
 			{
-				if (!startChallenge)
+				if (!canEnterHardMode)
 				{
+					yield return "sendtochaterror Someone already tampered with Module Listening. Hard mode cannot be enabled in this state.";
+					yield break;
+				}
+				else if (!startChallenge)
+				{
+					if (!canTPEnterHardMode)
+                    {
+						yield return "sendtochat Module Listening (#{1}) refuses to enter hard mode in this state.";
+						yield break;
+					}
+
 					startChallenge = true;
 					yield return "sendtochat {0}? Are you sure you want to enable hard mode on Module Listening? Type in the same command within 5 seconds to confirm.";
 					StartCoroutine(challengeHandler);
@@ -823,6 +855,11 @@ public class ModuleListening : MonoBehaviour
 				challengeHandler = DelayChallenge();
 			if (hardModeEnabled)
 			{
+				if (canEnterHardMode)
+                {
+					yield return "sendtochaterror Module Listening hard mode cannot be disabled without tampering with the play buttons first.";
+					yield break;
+				}
 				if (!startChallenge)
 				{
 					startChallenge = true;
@@ -882,7 +919,6 @@ public class ModuleListening : MonoBehaviour
 				playBtns[btnColors.ToList().IndexOf(3)].OnInteract();
 			yield break;
         }
-        string[] parameters = command.Split(' ');
         if (command.StartsWith("press "))
         {
 			string[] sub = command.Substring(6).Split();
@@ -906,7 +942,7 @@ public class ModuleListening : MonoBehaviour
 			}
 			if (buttonPresses.Count != 20)
 			{
-				yield return "sendtochaterror You did not request exactly 20 characters for the module to answer!";
+				yield return string.Format("sendtochaterror You did not request exactly 20 characters for the module to answer! You provided instead {0} character(s) in your command.", buttonPresses.Count);
 			}
 			// PPA functionality, in case of anyone activating Hard Mode
 			List<int> correctAnswerInterepted = new List<int>();
@@ -916,7 +952,7 @@ public class ModuleListening : MonoBehaviour
 			{
 				
 				if (correctAnswerInterepted.SequenceEqual(buttonPresses) && hardModeEnabled && x == 19)
-					yield return "awardpoints 5";
+					yield return string.Format("awardpoints {0}", PPAValue);
 				yield return null;
 				symbolBtns[buttonPresses[x]].OnInteract();
 				yield return new WaitForSeconds(0.1f);
