@@ -15,8 +15,8 @@ public class ModuleListening : MonoBehaviour
 
 	readonly string symbols = "!@%^(_|\\\'<";
 
-	public AudioClip[] AMistake,
-		Bartending, Battleship, BenedictCumberbatch, BlackHole, Blockbusters, BobBarks, BootTooBig, BritishSlang, BrokenButtons, BurglarAlarm,
+	public AudioClip[] Twenty1, Forty2And501 , AMistake,
+		Bartending, Battleship, BenedictCumberbatch, BlackHole, Blockbusters, BobBarks, BootTooBig, BritishSlang, BrokenButtons, BurglarAlarm, ButtonGrid,
 		CheapCheckout, ChordQualities, ChristmasPresents, ColoredKeys, ColoredSquares, CookieJars, Creation, CrystalMaze, Cube,
 		DoubleExpert, DoubleOh,
 		EncryptedEquations, EuropeanTravel,
@@ -40,7 +40,9 @@ public class ModuleListening : MonoBehaviour
 		WasteManagement, Wavetapping, Wire, WordSearch,
 		XRay, X01,
 		Yahtzee,
-		Zoni;
+		Zoni,
+		// Rare Sounds divider
+		RareHexmaze, RareUnrelatedAnagrams;
 
 	public AudioSource sound;
 	AudioClip[][] audioLibrary;
@@ -75,11 +77,11 @@ public class ModuleListening : MonoBehaviour
 			"!@_^!", "_<'\\'", "|!(|\\", "%!^|(", "_<_!%", "!@!^_", "%^!^^", "^!<\\\\", "<''\\(", "(_%!|",
 			"\\_@<%", "%\\'(\\", "<!'|!", "'(^<!", "_'%\\!", "!'%!(", "^(%|\\", "^!!(\\", "!^<%(", "'@\\\\|",
 			"|(@'^", "_|%<|", "_<_|_", "@('('", "@\\!^_", "'_!^'", "@%<'_", "|<(\\@", "|'||<", "'(!%'",
-			"!(\\(_","'(%@_","|''\\|","%\\\\<!","(^_<!","(!^'\\","@'!^^","|(<@_","^!(!'",
-			"''!%^","@^@|_","'_!%^","^^^@(","<|!%%","!\\((<","|''%\\","('\\!'","^@@(^","^__(_",
-			"(_%@!","^%@!<","@<___","|(@@!","_|^||","!^@'_","'!_(%","!<|@!","^|<!^","^<<!%",
-			"@(\\\\\\","^\\|^^","^<!|%","'!@@|","%@_(@","!<!_<","<|@(<","\\(!!(","!@|!!","|^<<_","_@''_",
-			"_|_!!","!_\\!|","<_<^!","_!<^(","%^|_!","''!'!","'^_'\\","!'<\\|","!(%|(","%(%(_",
+			"!(\\(_", "'(%@_", "|''\\|", "%\\\\<!", "(^_<!", "(!^'\\", "@'!^^", "|(<@_", "^!(!'",
+			"''!%^", "@^@|_", "'_!%^", "^^^@(", "<|!%%", "!\\((<", "|''%\\", "('\\!'", "^@@(^", "^__(_",
+			"(_%@!", "^%@!<", "@<___", "|(@@!", "_|^||", "!^@'_", "'!_(%","!<|@!", "^|<!^", "^<<!%",
+			"@(\\\\\\", "^\\|^^", "^<!|%", "'!@@|", "%@_(@","!<!_<", "<|@(<", "\\(!!(", "!@|!!", "|^<<_", "_@''_",
+			"_|_!!", "!_\\!|", "<_<^!", "_!<^(", "%^|_!", "''!'!", "'^_'\\", "!'<\\|", "!(%|(", "%(%(_",
 		};
 
 	string[] royalFlushModNames = { "Benedict Cumberbatch", "Blockbusters", "British Slang", "Christmas Presents", "The Crystal Maze", "The Cube", "European Travel", "Free Parking", "Graffiti Numbers", "Guitar Chords", "Hieroglyphics", "The Jack-O'-Lantern", "The Jewel Vault", "The Labyrinth", "Lightspeed", "The London Underground", "Maintenance", "Mortal Kombat", "The Number Cipher", "Simon's Stages", "Sonic the Hedgehog", "The Sphere", "Street Fighter", "The Sun", "The Swan", "The Wire" };
@@ -118,8 +120,22 @@ public class ModuleListening : MonoBehaviour
 
 	List<int> orderSubmit = new List<int>();
 
-	bool hardModeEnabled = false, interactable = true, canEnterHardMode = true, canTPEnterHardMode; // TP handling only atm, may try to add config down the line
-
+	bool hardModeEnabled = false, interactable = true, canEnterHardMode = true, canTPEnterHardMode;
+	Dictionary<string, Dictionary<string, object>> moduleReferences = new Dictionary<string, Dictionary<string, object>>()
+	{
+		{// Template for setting up module references. This is part of the rewrite
+			"template"// The Name that will be used to determine the module ID.
+			, new Dictionary<string, object>()
+			{
+				{ "moduleCode", "?????" }, // The module's code required to solve the module.
+				{ "sortKey", "TEMPLATE" }, // The sort key used on the module.
+				{ "displayName", "Template" }, // The base module's display name. Logging is used for this
+				{ "altIDs", new string[0] }, // Other modules' ID that can be searched on the module
+				{ "moduleSounds", new AudioClip[0] }, // Any sounds that can be played on the module. These are mainly common.
+				{ "moduleSoundsRare", new AudioClip[0] }, // Any sounds that rarely occur within the given module.
+			}
+		},
+	};
 	ModuleListeningSettings localSettings = new ModuleListeningSettings();
 	int PPAValue;
 	List<int> input = new List<int>();
@@ -130,6 +146,44 @@ public class ModuleListening : MonoBehaviour
 		foreach (int modIdx in moduleIndex)
 			output.Add(moduleNames[modIdx]);
 		return output;
+	}
+
+	void FillAllModReferences()
+    {
+		moduleReferences = new Dictionary<string, Dictionary<string, object>>()
+		{
+			{
+				"MistakeModule"
+				, new Dictionary<string, object>()
+				{
+					{ "moduleCode", "_|\\!(" },
+					{ "sortKey", "AMISTAKE" },
+					{ "displayName", "A Mistake" },
+					{ "moduleSounds", AMistake },
+				}
+			},
+			{
+				"BartendingModule"
+				, new Dictionary<string, object>()
+				{
+					{ "moduleCode", "^\\^|<" },
+					{ "sortKey", "BARTENDING" },
+					{ "displayName", "Bartending" },
+					{ "moduleSounds", Bartending },
+				}
+			},
+			{
+				""
+				, new Dictionary<string, object>()
+				{
+					{ "moduleCode", "" },
+					{ "sortKey", "" },
+					{ "displayName", "" },
+					{ "moduleSounds", new AudioClip[0] },
+					{ "moduleSoundsRare", new AudioClip[0] },
+				}
+			},
+		};
 	}
 
 
@@ -277,6 +331,8 @@ public class ModuleListening : MonoBehaviour
 			Wavetapping,Wire,WordSearch,XRay,
 			X01,Yahtzee,Zoni,
 		};
+
+
 	}
 	
 	void SetUpButtons()
@@ -885,13 +941,13 @@ public class ModuleListening : MonoBehaviour
             yield return null;
             playBtns[0].OnInteract();
             while (sound.isPlaying) yield return "trycancel";
-			yield return new WaitForSeconds(0.5f);
+			yield return "trywaitcancel 0.5";
             playBtns[1].OnInteract();
             while (sound.isPlaying) yield return "trycancel";
-			yield return new WaitForSeconds(0.5f);
+			yield return "trywaitcancel 0.5";
 			playBtns[2].OnInteract();
             while (sound.isPlaying) yield return "trycancel";
-			yield return new WaitForSeconds(0.5f);
+			yield return "trywaitcancel 0.5";
 			playBtns[3].OnInteract();
             yield break;
         }
