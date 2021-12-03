@@ -12,6 +12,8 @@ public class ModuleListening : MonoBehaviour
 	public KMBombInfo bomb;
 	public KMAudio mAudio;
 	public KMBombModule modSelf;
+	public TextAsset database;
+
 
 	readonly string symbols = "!@%^(_|\\\'<";
 
@@ -30,11 +32,11 @@ public class ModuleListening : MonoBehaviour
 		Maintenance, Mazematics, MegaMan2, Minesweeper, MortalKombat,
 		Necronomicon, Neutralization, Nonograms, NumberCipher, NumberNimbleness,
 		OnlyConnect,
-		Painting, PartialDerivatives, PerspectivePegs,
+		Painting, PartialDerivatives, PerspectivePegs, Poetry,
 		QuizzBuzz, Qwirkle,
 		Rhythms, RPSLS,
 		SchlagDenBomb, SevenDeadlySins, ShapesAndBombs, SillySlots, SimonSamples, SimonSelects, SimonSends, SimonSimons, SimonSings, SimonStores, SimonsStages, Sink, SonicTheHedgehog, Souvenir, Sphere, StreetFighter, Sun, Swan, Synchronization,
-		Tangrams, TashaSqueals, Tennis, TreasureHunt, TurtleRobot,
+		Tangrams, TashaSqueals, Tennis, TurtleRobot,
 		UnfairCipher,
 		Valves, VisualImpairment,
 		WasteManagement, Wavetapping, Wire, WordSearch,
@@ -42,7 +44,7 @@ public class ModuleListening : MonoBehaviour
 		Yahtzee,
 		Zoni,
 		// Rare Sounds divider
-		RareHexmaze, RareUnrelatedAnagrams;
+		RareForgetMeNow, RareHexmaze, RareUnrelatedAnagrams;
 
 	public AudioSource sound;
 	AudioClip[][] audioLibrary;
@@ -53,9 +55,9 @@ public class ModuleListening : MonoBehaviour
 		"Graffiti Numbers", "Gridlock", "Guitar Chords", "Hexamaze", "Hidden Colors", "Hieroglyphics", "Hogwarts", "The Hypercube", "Instructions", "The Jack-O’-Lantern",
 		"The Jewel Vault", "Kudosudoku", "The Labyrinth", "Laundry", "LED Math", "Lightspeed", "The London Underground", "Lucky Dice", "Maintenance", "Mazematics",
 		"Mega Man 2", "Minesweeper", "Mortal Kombat", "The Necronomicon", "Neutralization", "The Number Cipher", "Number Nimbleness", "Only Connect", "Painting", "Partial Derivatives",
-		"Perspective Pegs", "Quiz Buzz", "Qwirkle", "Rhythms", "Rock-Paper-Scissors-L.-Sp.", "Schlag den Bomb", "Seven Deadly Sins", "Shapes and Bombs", "Silly Slots", "Simon Samples",
+		"Perspective Pegs", "Poetry", "Quiz Buzz", "Qwirkle", "Rhythms", "Rock-Paper-Scissors-L.-Sp.", "Schlag den Bomb", "Seven Deadly Sins", "Shapes and Bombs", "Silly Slots", "Simon Samples",
 		"Simon Selects", "Simon Sends", "Simon Simons", "Simon Sings", "Simon Stores", "Simon's Stages", "Sink","Sonic The Hedgehog", "Souvenir", "The Sphere",
-		"Street Fighter", "The Sun", "The Swan", "Synchronization", "Tangrams", "Tasha Squeals", "Tennis", "Treasure Hunt", "Turtle Robot", "Unfair Cipher",
+		"Street Fighter", "The Sun", "The Swan", "Synchronization", "Tangrams", "Tasha Squeals", "Tennis", "Turtle Robot", "Unfair Cipher",
 		"Valves", "Visual Impairment", "Waste Management","Wavetapping", "The Wire", "Word Search", "X-Ray", "X01", "Yahtzee", "Zoni",
 	};
 	string[] moduleIds = {
@@ -65,9 +67,9 @@ public class ModuleListening : MonoBehaviour
 		"graffitiNumbers","GridlockModule","guitarChords","HexamazeModule","lgndHiddenColors","hieroglyphics","HogwartsModule","TheHypercubeModule","instructions","jackOLantern",
 		"jewelVault","KudosudokuModule","labyrinth","Laundry","lgndLEDMath","lightspeed","londonUnderground","luckyDice","maintenance","mazematics",
 		"megaMan2","MinesweeperModule","mortalKombat","necronomicon","neutralization","numberCipher","numberNimbleness","OnlyConnectModule","Painting","partialDerivatives",
-		"spwizPerspectivePegs","quizBuzz","qwirkle","MusicRhythms","RockPaperScissorsLizardSpockModule","qSchlagDenBomb","sevenDeadlySins","ShapesBombs","SillySlots","simonSamples",
+		"spwizPerspectivePegs","poetry","quizBuzz","qwirkle","MusicRhythms","RockPaperScissorsLizardSpockModule","qSchlagDenBomb","sevenDeadlySins","ShapesBombs","SillySlots","simonSamples",
 		"simonSelectsModule","SimonSendsModule","simonSimons","SimonSingsModule","simonStores","simonsStages","Sink","sonic","SouvenirModule","sphere",
-		"streetFighter","sun","theSwan","SynchronizationModule","Tangrams","tashaSqueals","TennisModule","treasureHunt","turtleRobot","unfairCipher",
+		"streetFighter","sun","theSwan","SynchronizationModule","Tangrams","tashaSqueals","TennisModule","turtleRobot","unfairCipher",
 		"valves","visual_impairment","wastemanagement","Wavetapping","wire","WordSearchModule","XRayModule","X01","YahtzeeModule","lgndZoni",
 	};
 	string[] moduleCodesAll = new string[]
@@ -79,8 +81,8 @@ public class ModuleListening : MonoBehaviour
 			"|(@'^", "_|%<|", "_<_|_", "@('('", "@\\!^_", "'_!^'", "@%<'_", "|<(\\@", "|'||<", "'(!%'",
 			"!(\\(_", "'(%@_", "|''\\|", "%\\\\<!", "(^_<!", "(!^'\\", "@'!^^", "|(<@_", "^!(!'",
 			"''!%^", "@^@|_", "'_!%^", "^^^@(", "<|!%%", "!\\((<", "|''%\\", "('\\!'", "^@@(^", "^__(_",
-			"(_%@!", "^%@!<", "@<___", "|(@@!", "_|^||", "!^@'_", "'!_(%","!<|@!", "^|<!^", "^<<!%",
-			"@(\\\\\\", "^\\|^^", "^<!|%", "'!@@|", "%@_(@","!<!_<", "<|@(<", "\\(!!(", "!@|!!", "|^<<_", "_@''_",
+			"(_%@!", "!@|!!", "^%@!<", "@<___", "|(@@!", "_|^||", "!^@'_", "'!_(%","!<|@!", "^|<!^", "^<<!%",
+			"@(\\\\\\", "^\\|^^", "^<!|%", "'!@@|", "%@_(@","!<!_<", "<|@(<", "\\(!!(", "|^<<_", "_@''_",
 			"_|_!!", "!_\\!|", "<_<^!", "_!<^(", "%^|_!", "''!'!", "'^_'\\", "!'<\\|", "!(%|(", "%(%(_",
 		};
 
@@ -150,6 +152,7 @@ public class ModuleListening : MonoBehaviour
 
 	void FillAllModReferences()
     {
+		//moduleReferences = JsonUtility.FromJson(database.text, Dictionary<string, Dictionary<string, object>>);
 		moduleReferences = new Dictionary<string, Dictionary<string, object>>()
 		{
 			{
@@ -170,6 +173,738 @@ public class ModuleListening : MonoBehaviour
 					{ "sortKey", "BARTENDING" },
 					{ "displayName", "Bartending" },
 					{ "moduleSounds", Bartending },
+				}
+			},
+			{
+				"BattleshipModule"
+				, new Dictionary<string, object>()
+				{
+					{ "moduleCode", "(!(%(" },
+					{ "sortKey", "BATTLESHIP" },
+					{ "displayName", "Battleship" },
+					{ "moduleSounds", Battleship },
+				}
+			},
+			{
+				"benedictCumberbatch"
+				, new Dictionary<string, object>()
+				{
+					{ "moduleCode", "|(@^%" },
+					{ "sortKey", "BENEDICTCUMBERBATCH" },
+					{ "displayName", "Benedict Cumberbatch" },
+					{ "moduleSounds", BenedictCumberbatch },
+				}
+			},
+			{
+				"BlackHoleModule"
+				, new Dictionary<string, object>()
+				{
+					{ "moduleCode", "'%<|^" },
+					{ "sortKey", "BLACKHOLE" },
+					{ "displayName", "Black Hole" },
+					{ "moduleSounds", BlackHole },
+				}
+			},
+			{
+				"blockbusters"
+				, new Dictionary<string, object>()
+				{
+					{ "moduleCode", "@(!(_" },
+					{ "sortKey", "BLOCKBUSTERS" },
+					{ "displayName", "Blockbusters" },
+					{ "moduleSounds", Blockbusters },
+				}
+			},
+			{
+				"ksmBobBarks"
+				, new Dictionary<string, object>()
+				{
+					{ "moduleCode", "%@|'^" },
+					{ "sortKey", "BOBBARKS" },
+					{ "displayName", "Bob Barks" },
+					{ "moduleSounds", BobBarks },
+				}
+			},
+			{
+				"bootTooBig"
+				, new Dictionary<string, object>()
+				{
+					{ "moduleCode", "<|!^\\" },
+					{ "sortKey", "BOOTTOOBIG" },
+					{ "displayName", "Boot Too Big" },
+					{ "moduleSounds", BootTooBig },
+				}
+			},
+			{
+				"britishSlang"
+				, new Dictionary<string, object>()
+				{
+					{ "moduleCode", "|^@_(" },
+					{ "sortKey", "BRITISHSLANG" },
+					{ "displayName", "British Slang" },
+					{ "moduleSounds", BritishSlang },
+				}
+			},
+			{
+				"BrokenButtonsModule"
+				, new Dictionary<string, object>()
+				{
+					{ "moduleCode", "!|(|_" },
+					{ "sortKey", "BROKENBUTTONS" },
+					{ "displayName", "Broken Buttons" },
+					{ "moduleSounds", BrokenButtons },
+				}
+			},
+			{
+				"burglarAlarm"
+				, new Dictionary<string, object>()
+				{
+					{ "moduleCode", "_@<(<" },
+					{ "sortKey", "BURGLARALARM" },
+					{ "displayName", "Burglar Alarm" },
+					{ "moduleSounds", BurglarAlarm },
+				}
+			},
+			{
+				"CheapCheckoutModule"
+				, new Dictionary<string, object>()
+				{
+					{ "moduleCode", "\\(!<%" },
+					{ "sortKey", "CHEAPCHECKOUT" },
+					{ "displayName", "Cheap Checkout" },
+					{ "moduleSounds", CheapCheckout },
+				}
+			},
+			{
+				"ChordQualities"
+				, new Dictionary<string, object>()
+				{
+					{ "moduleCode", "(\\^%^" },
+					{ "sortKey", "CHORDQUALTIES" },
+					{ "displayName", "Chord Qualties" },
+					{ "moduleSounds", ChordQualities },
+				}
+			},
+			{
+				"christmasPresents"
+				, new Dictionary<string, object>()
+				{
+					{ "moduleCode", "_(@<^" },
+					{ "sortKey", "CHRISTMASPRESENTS" },
+					{ "displayName", "Christmas Presents" },
+					{ "moduleSounds", ChristmasPresents },
+				}
+			},
+			{
+				"lgndColoredKeys"
+				, new Dictionary<string, object>()
+				{
+					{ "moduleCode", "!@^(!" },
+					{ "sortKey", "COLOREDKEYS" },
+					{ "displayName", "Colored Keys" },
+					{ "moduleSounds", ColoredKeys },
+				}
+			},
+			{
+				"ColoredSquaresModule"
+				, new Dictionary<string, object>()
+				{
+					{ "moduleCode", "%<|((" },
+					{ "sortKey", "COLOREDSQUARES" },
+					{ "displayName", "Colored Squares" },
+					{ "moduleSounds", ColoredSquares },
+				}
+			},
+			{
+				"cookieJars"
+				, new Dictionary<string, object>()
+				{
+					{ "moduleCode", "(\\!_%" },
+					{ "sortKey", "COOKIEJARS" },
+					{ "displayName", "Cookie Jars" },
+					{ "moduleSounds", CookieJars },
+				}
+			},
+			{
+				"CreationModule"
+				, new Dictionary<string, object>()
+				{
+					{ "moduleCode", "<<%%(" },
+					{ "sortKey", "CREATION" },
+					{ "displayName", "Creation" },
+					{ "moduleSounds", Creation },
+				}
+			},
+			{
+				"crystalMaze"
+				, new Dictionary<string, object>()
+				{
+					{ "moduleCode", "''|(^" },
+					{ "sortKey", "CRYSTALMAZE" },
+					{ "displayName", "The Crystal Maze" },
+					{ "moduleSounds", CrystalMaze },
+				}
+			},
+			{
+				"cube"
+				, new Dictionary<string, object>()
+				{
+					{ "moduleCode", "|@|'^" },
+					{ "sortKey", "CUBE" },
+					{ "displayName", "The Cube" },
+					{ "moduleSounds", Cube },
+				}
+			},
+			{
+				"doubleExpert"
+				, new Dictionary<string, object>()
+				{
+					{ "moduleCode", "!@_^!" },
+					{ "sortKey", "DOUBLEEXPERT" },
+					{ "displayName", "Double Expert" },
+					{ "moduleSounds", DoubleExpert },
+				}
+			},
+			{
+				"DoubleOhModule"
+				, new Dictionary<string, object>()
+				{
+					{ "moduleCode", "_<'\\'" },
+					{ "sortKey", "DOUBLEOH" },
+					{ "displayName", "Double-Oh" },
+					{ "moduleSounds", DoubleOh },
+				}
+			},
+			{
+				"EncryptedEquationsModule"
+				, new Dictionary<string, object>()
+				{
+					{ "moduleCode", "|!(|\\" },
+					{ "sortKey", "ENCRYPTEDEQUATIONS" },
+					{ "displayName", "Encrypted Equations" },
+					{ "moduleSounds", EncryptedEquations },
+				}
+			},
+			{
+				"europeanTravel"
+				, new Dictionary<string, object>()
+				{
+					{ "moduleCode", "%!^|(" },
+					{ "sortKey", "EUROPEANTRAVEL" },
+					{ "displayName", "European Travel" },
+					{ "moduleSounds", EuropeanTravel },
+				}
+			},
+			{
+				"fastMath"
+				, new Dictionary<string, object>()
+				{
+					{ "moduleCode", "_<_!%" },
+					{ "sortKey", "FASTMATH" },
+					{ "displayName", "Fast Math" },
+					{ "moduleSounds", FastMath},
+				}
+			},
+			{
+				"forgetEnigma"
+				, new Dictionary<string, object>()
+				{
+					{ "moduleCode", "!@!^_" },
+					{ "sortKey", "FORGETENIGMA" },
+					{ "displayName", "Forget Enigma" },
+					{ "moduleSounds", ForgetEnigma },
+				}
+			},
+			{
+				"ForgetMeNow"
+				, new Dictionary<string, object>()
+				{
+					{ "moduleCode", "%^!^^" },
+					{ "sortKey", "FORGETMENOW" },
+					{ "displayName", "Forget Me Now" },
+					{ "moduleSounds", ForgetMeNow },
+					{ "moduleSoundsRare", RareForgetMeNow },
+				}
+			},
+			{
+				"freeParking"
+				, new Dictionary<string, object>()
+				{
+					{ "moduleCode", "^!<\\\\" },
+					{ "sortKey", "FREEPARKING" },
+					{ "displayName", "Free Parking" },
+					{ "moduleSounds", FreeParking },
+				}
+			},
+			{
+				"FriendshipModule"
+				, new Dictionary<string, object>()
+				{
+					{ "moduleCode", "<''\\(" },
+					{ "sortKey", "FRIENDSHIP" },
+					{ "displayName", "Friendship" },
+					{ "moduleSounds", Friendship },
+				}
+			},
+			{
+				"lgndGadgetronVendor"
+				, new Dictionary<string, object>()
+				{
+					{ "moduleCode", "(_%!|" },
+					{ "sortKey", "GADGETRONVENDOR" },
+					{ "displayName", "Gadgetron Vendor" },
+					{ "moduleSounds", GadgetronVendor },
+				}
+			},
+			{
+				"graffitiNumbers"
+				, new Dictionary<string, object>()
+				{
+					{ "moduleCode", "\\_@<%" },
+					{ "sortKey", "GRAFFITINUMBERS" },
+					{ "displayName", "Graffiti Numbers" },
+					{ "moduleSounds", GraffitiNumbers },
+				}
+			},
+			{
+				"GridlockModule"
+				, new Dictionary<string, object>()
+				{
+					{ "moduleCode", "%\\'(\\" },
+					{ "sortKey", "GRIDLOCK" },
+					{ "displayName", "Gridlock" },
+					{ "moduleSounds", Gridlock },
+				}
+			},
+			{
+				"guitarChords"
+				, new Dictionary<string, object>()
+				{
+					{ "moduleCode", "<!'|!" },
+					{ "sortKey", "GUITARCHORDS" },
+					{ "displayName", "Guitar Chords" },
+					{ "moduleSounds", GuitarChords },
+				}
+			},
+			{
+				"HexamazeModule"
+				, new Dictionary<string, object>()
+				{
+					{ "moduleCode", "'(^<!" },
+					{ "sortKey", "HEXAMAZE" },
+					{ "displayName", "Hexamaze" },
+					{ "moduleSounds", Hexamaze },
+					{ "moduleSoundsRare", RareHexmaze },
+				}
+			},
+			{
+				"lgndHiddenColors"
+				, new Dictionary<string, object>()
+				{
+					{ "moduleCode", "_'%\\!" },
+					{ "sortKey", "HIDDENCOLORS" },
+					{ "displayName", "Hidden Colors" },
+					{ "moduleSounds", HiddenColors },
+				}
+			},
+			{
+				"hieroglyphics"
+				, new Dictionary<string, object>()
+				{
+					{ "moduleCode", "!'%!(" },
+					{ "sortKey", "HIEROGLYPHICS" },
+					{ "displayName", "Hieroglyphics" },
+					{ "moduleSounds", Hieroglyphics },
+				}
+			},
+			{
+				"HogwartsModule"
+				, new Dictionary<string, object>()
+				{
+					{ "moduleCode", "^(%|\\" },
+					{ "sortKey", "HOGWARTS" },
+					{ "displayName", "Hogwarts" },
+					{ "moduleSounds", Hogwarts },
+				}
+			},
+			{
+				"TheHypercubeModule"
+				, new Dictionary<string, object>()
+				{
+					{ "moduleCode", "^!!(\\" },
+					{ "sortKey", "HYPERCUBE" },
+					{ "displayName", "The Hypercube" },
+					{ "moduleSounds", Hypercube },
+				}
+			},
+			{
+				"instructions"
+				, new Dictionary<string, object>()
+				{
+					{ "moduleCode", "!^<%(" },
+					{ "sortKey", "INSTRUCTIONS" },
+					{ "displayName", "Instructions" },
+					{ "moduleSounds", Instructions },
+				}
+			},
+			{
+				"jackOLantern"
+				, new Dictionary<string, object>()
+				{
+					{ "moduleCode", "'@\\\\|" },
+					{ "sortKey", "JACKOLANTERN" },
+					{ "displayName", "The Jack-O’-Lantern" },
+					{ "moduleSounds", JackOLantern },
+				}
+			},
+			{
+				"jewelVault"
+				, new Dictionary<string, object>()
+				{
+					{ "moduleCode", "|(@'^" },
+					{ "sortKey", "JEWELVAULT" },
+					{ "displayName", "The Jewel Vault" },
+					{ "moduleSounds", JewelVault },
+				}
+			},
+			{
+				"KudosudokuModule"
+				, new Dictionary<string, object>()
+				{
+					{ "moduleCode", "_|%<|" },
+					{ "sortKey", "KUDOSUDOKU" },
+					{ "displayName", "Kudosudoku" },
+					{ "moduleSounds", Kudosudoku },
+				}
+			},
+			{
+				"labyrinth"
+				, new Dictionary<string, object>()
+				{
+					{ "moduleCode", "_<_|_" },
+					{ "sortKey", "LABYRINTH" },
+					{ "displayName", "The Labyrinth" },
+					{ "moduleSounds", Labyrinth },
+				}
+			},
+			{
+				"Laundry"
+				, new Dictionary<string, object>()
+				{
+					{ "moduleCode", "@('('" },
+					{ "sortKey", "LAUNDRY" },
+					{ "displayName", "Laundry" },
+					{ "moduleSounds", Laundry },
+				}
+			},
+			{
+				"lgndLEDMath"
+				, new Dictionary<string, object>()
+				{
+					{ "moduleCode", "@\\!^_" },
+					{ "sortKey", "LEDMATH" },
+					{ "displayName", "LED Math" },
+					{ "moduleSounds", LEDMath },
+				}
+			},
+			{
+				"lightspeed"
+				, new Dictionary<string, object>()
+				{
+					{ "moduleCode", "'_!^'" },
+					{ "sortKey", "LIGHTSPEED" },
+					{ "displayName", "Lightspeed" },
+					{ "moduleSounds", Lightspeed },
+				}
+			},
+			{
+				"londonUnderground"
+				, new Dictionary<string, object>()
+				{
+					{ "moduleCode", "@%<'_" },
+					{ "sortKey", "LONDONUNDERGROUND" },
+					{ "displayName", "The London Underground" },
+					{ "moduleSounds", LondonUnderground },
+				}
+			},
+			{
+				"luckyDice"
+				, new Dictionary<string, object>()
+				{
+					{ "moduleCode", "|<(\\@" },
+					{ "sortKey", "LUCKYDICE" },
+					{ "displayName", "Lucky Dice" },
+					{ "moduleSounds", LuckyDice },
+				}
+			},
+			{
+				"maintenance"
+				, new Dictionary<string, object>()
+				{
+					{ "moduleCode", "|'||<" },
+					{ "sortKey", "MAINTENANCE" },
+					{ "displayName", "Maintenance" },
+					{ "moduleSounds", Maintenance },
+				}
+			},
+			{
+				"mazematics"
+				, new Dictionary<string, object>()
+				{
+					{ "moduleCode", "'(!%'" },
+					{ "sortKey", "MAZEMATICS" },
+					{ "displayName", "Mazematics" },
+					{ "moduleSounds", Mazematics },
+				}
+			},
+			{
+				"megaMan2"
+				, new Dictionary<string, object>()
+				{
+					{ "moduleCode", "!(\\(_" },
+					{ "sortKey", "MEGAMANTWO" },
+					{ "displayName", "Mega Man 2" },
+					{ "moduleSounds", MegaMan2 },
+				}
+			},
+			{
+				"MinesweeperModule"
+				, new Dictionary<string, object>()
+				{
+					{ "moduleCode", "'(%@_" },
+					{ "sortKey", "MINESWEEPER" },
+					{ "displayName", "Minesweeper" },
+					{ "moduleSounds", Minesweeper },
+				}
+			},
+			{
+				"mortalKombat"
+				, new Dictionary<string, object>()
+				{
+					{ "moduleCode", "|''\\|" },
+					{ "sortKey", "MORTALKOMBAT" },
+					{ "displayName", "Mortal Kombat" },
+					{ "moduleSounds", MortalKombat },
+				}
+			},
+			{
+				""
+				, new Dictionary<string, object>()
+				{
+					{ "moduleCode", "" },
+					{ "sortKey", "" },
+					{ "displayName", "" },
+					{ "moduleSounds", new AudioClip[0] },
+					{ "moduleSoundsRare", new AudioClip[0] },
+				}
+			},
+			{
+				""
+				, new Dictionary<string, object>()
+				{
+					{ "moduleCode", "" },
+					{ "sortKey", "" },
+					{ "displayName", "" },
+					{ "moduleSounds", new AudioClip[0] },
+					{ "moduleSoundsRare", new AudioClip[0] },
+				}
+			},
+			{
+				""
+				, new Dictionary<string, object>()
+				{
+					{ "moduleCode", "" },
+					{ "sortKey", "" },
+					{ "displayName", "" },
+					{ "moduleSounds", new AudioClip[0] },
+					{ "moduleSoundsRare", new AudioClip[0] },
+				}
+			},
+			{
+				""
+				, new Dictionary<string, object>()
+				{
+					{ "moduleCode", "" },
+					{ "sortKey", "" },
+					{ "displayName", "" },
+					{ "moduleSounds", new AudioClip[0] },
+					{ "moduleSoundsRare", new AudioClip[0] },
+				}
+			},
+			{
+				""
+				, new Dictionary<string, object>()
+				{
+					{ "moduleCode", "" },
+					{ "sortKey", "" },
+					{ "displayName", "" },
+					{ "moduleSounds", new AudioClip[0] },
+					{ "moduleSoundsRare", new AudioClip[0] },
+				}
+			},
+			{
+				""
+				, new Dictionary<string, object>()
+				{
+					{ "moduleCode", "" },
+					{ "sortKey", "" },
+					{ "displayName", "" },
+					{ "moduleSounds", new AudioClip[0] },
+					{ "moduleSoundsRare", new AudioClip[0] },
+				}
+			},
+			{
+				""
+				, new Dictionary<string, object>()
+				{
+					{ "moduleCode", "" },
+					{ "sortKey", "" },
+					{ "displayName", "" },
+					{ "moduleSounds", new AudioClip[0] },
+					{ "moduleSoundsRare", new AudioClip[0] },
+				}
+			},
+			{
+				""
+				, new Dictionary<string, object>()
+				{
+					{ "moduleCode", "" },
+					{ "sortKey", "" },
+					{ "displayName", "" },
+					{ "moduleSounds", new AudioClip[0] },
+					{ "moduleSoundsRare", new AudioClip[0] },
+				}
+			},
+			{
+				""
+				, new Dictionary<string, object>()
+				{
+					{ "moduleCode", "" },
+					{ "sortKey", "" },
+					{ "displayName", "" },
+					{ "moduleSounds", new AudioClip[0] },
+					{ "moduleSoundsRare", new AudioClip[0] },
+				}
+			},
+			{
+				""
+				, new Dictionary<string, object>()
+				{
+					{ "moduleCode", "" },
+					{ "sortKey", "" },
+					{ "displayName", "" },
+					{ "moduleSounds", new AudioClip[0] },
+					{ "moduleSoundsRare", new AudioClip[0] },
+				}
+			},
+			{
+				""
+				, new Dictionary<string, object>()
+				{
+					{ "moduleCode", "" },
+					{ "sortKey", "" },
+					{ "displayName", "" },
+					{ "moduleSounds", new AudioClip[0] },
+					{ "moduleSoundsRare", new AudioClip[0] },
+				}
+			},
+			{
+				""
+				, new Dictionary<string, object>()
+				{
+					{ "moduleCode", "" },
+					{ "sortKey", "" },
+					{ "displayName", "" },
+					{ "moduleSounds", new AudioClip[0] },
+					{ "moduleSoundsRare", new AudioClip[0] },
+				}
+			},
+			{
+				""
+				, new Dictionary<string, object>()
+				{
+					{ "moduleCode", "" },
+					{ "sortKey", "" },
+					{ "displayName", "" },
+					{ "moduleSounds", new AudioClip[0] },
+					{ "moduleSoundsRare", new AudioClip[0] },
+				}
+			},
+			{
+				""
+				, new Dictionary<string, object>()
+				{
+					{ "moduleCode", "" },
+					{ "sortKey", "" },
+					{ "displayName", "" },
+					{ "moduleSounds", new AudioClip[0] },
+					{ "moduleSoundsRare", new AudioClip[0] },
+				}
+			},
+			{
+				""
+				, new Dictionary<string, object>()
+				{
+					{ "moduleCode", "" },
+					{ "sortKey", "" },
+					{ "displayName", "" },
+					{ "moduleSounds", new AudioClip[0] },
+					{ "moduleSoundsRare", new AudioClip[0] },
+				}
+			},
+			{
+				""
+				, new Dictionary<string, object>()
+				{
+					{ "moduleCode", "" },
+					{ "sortKey", "" },
+					{ "displayName", "" },
+					{ "moduleSounds", new AudioClip[0] },
+					{ "moduleSoundsRare", new AudioClip[0] },
+				}
+			},
+			{
+				""
+				, new Dictionary<string, object>()
+				{
+					{ "moduleCode", "" },
+					{ "sortKey", "" },
+					{ "displayName", "" },
+					{ "moduleSounds", new AudioClip[0] },
+					{ "moduleSoundsRare", new AudioClip[0] },
+				}
+			},
+			{
+				""
+				, new Dictionary<string, object>()
+				{
+					{ "moduleCode", "" },
+					{ "sortKey", "" },
+					{ "displayName", "" },
+					{ "moduleSounds", new AudioClip[0] },
+					{ "moduleSoundsRare", new AudioClip[0] },
+				}
+			},
+			{
+				""
+				, new Dictionary<string, object>()
+				{
+					{ "moduleCode", "" },
+					{ "sortKey", "" },
+					{ "displayName", "" },
+					{ "moduleSounds", new AudioClip[0] },
+					{ "moduleSoundsRare", new AudioClip[0] },
+				}
+			},
+			{
+				""
+				, new Dictionary<string, object>()
+				{
+					{ "moduleCode", "" },
+					{ "sortKey", "" },
+					{ "displayName", "" },
+					{ "moduleSounds", new AudioClip[0] },
+					{ "moduleSoundsRare", new AudioClip[0] },
 				}
 			},
 			{
@@ -302,34 +1037,31 @@ public class ModuleListening : MonoBehaviour
 	{
 		if (audioLibrary != null) return;
 		audioLibrary = new AudioClip[][] {
-			AMistake, Bartending, Battleship,
-			BenedictCumberbatch, BlackHole, Blockbusters, BobBarks,
-			BootTooBig, BritishSlang, BrokenButtons, BurglarAlarm,
-			CheapCheckout, ChordQualities, ChristmasPresents,
-			ColoredKeys, ColoredSquares, CookieJars,
-			Creation, CrystalMaze, Cube, DoubleExpert,
-			DoubleOh, EncryptedEquations, EuropeanTravel,
-			FastMath, ForgetEnigma, ForgetMeNow, FreeParking,
-			Friendship, GadgetronVendor, GraffitiNumbers,
-			Gridlock, GuitarChords, Hexamaze, HiddenColors,
-			Hieroglyphics, Hogwarts, Hypercube, Instructions,
-			JackOLantern, JewelVault, Kudosudoku,
-			Labyrinth, Laundry, LEDMath, Lightspeed, LondonUnderground,
-			LuckyDice, Maintenance, Mazematics, MegaMan2,
-			Minesweeper, MortalKombat, Necronomicon,
-			Neutralization, NumberCipher, NumberNimbleness, OnlyConnect,
-			Painting, PartialDerivatives,
-			PerspectivePegs, QuizzBuzz, Qwirkle,
-			Rhythms, RPSLS, SchlagDenBomb, SevenDeadlySins,
-			ShapesAndBombs, SillySlots,
-			SimonSamples, SimonSelects, SimonSends, SimonSimons,
-			SimonSings,SimonStores,SimonsStages,Sink,
-			SonicTheHedgehog,Souvenir,Sphere,StreetFighter,
-			Sun,Swan,Synchronization,Tangrams,
-			TashaSqueals,Tennis,TreasureHunt,TurtleRobot,
-			UnfairCipher,Valves,VisualImpairment,WasteManagement,
-			Wavetapping,Wire,WordSearch,XRay,
-			X01,Yahtzee,Zoni,
+			AMistake,
+			Bartending, Battleship, BenedictCumberbatch, BlackHole, Blockbusters, BobBarks, BootTooBig, BritishSlang, BrokenButtons, BurglarAlarm,
+			CheapCheckout, ChordQualities, ChristmasPresents, ColoredKeys, ColoredSquares, CookieJars, Creation, CrystalMaze, Cube,
+			DoubleExpert, DoubleOh,
+			EncryptedEquations, EuropeanTravel,
+			FastMath, ForgetEnigma, ForgetMeNow, FreeParking, Friendship,
+			GadgetronVendor, GraffitiNumbers, Gridlock, GuitarChords,
+			Hexamaze, HiddenColors, Hieroglyphics, Hogwarts, Hypercube,
+			Instructions, JackOLantern, JewelVault,
+			Kudosudoku,
+			Labyrinth, Laundry, LEDMath, Lightspeed, LondonUnderground, LuckyDice,
+			Maintenance, Mazematics, MegaMan2, Minesweeper, MortalKombat,
+			Necronomicon, Neutralization, NumberCipher, NumberNimbleness,
+			OnlyConnect,
+			Painting, PartialDerivatives, PerspectivePegs, Poetry,
+			QuizzBuzz, Qwirkle,
+			Rhythms, RPSLS,
+			SchlagDenBomb, SevenDeadlySins, ShapesAndBombs, SillySlots, SimonSamples, SimonSelects, SimonSends, SimonSimons, SimonSings, SimonStores, SimonsStages, Sink, SonicTheHedgehog, Souvenir, Sphere, StreetFighter, Sun, Swan, Synchronization,
+			Tangrams, TashaSqueals, Tennis, TurtleRobot,
+			UnfairCipher,
+			Valves, VisualImpairment,
+			WasteManagement, Wavetapping, Wire, WordSearch,
+			XRay, X01,
+			Yahtzee,
+			Zoni,
 		};
 
 
@@ -815,7 +1547,7 @@ public class ModuleListening : MonoBehaviour
 #pragma warning disable 414
     private readonly string TwitchHelpMessage = "To play the given tapes: \"!{0} play <color>\" Acceptable color options are red, blue, green, yellow. " +
 		"To play all the tapes from left to right \"!{0} play all\"\n" +
-		"To submit the sequence: \"!{0} press <chars>\" The characters must be on the module and the length must be exactly 20 characters long!";
+		"To submit the sequence: \"!{0} press/submit <chars>\" The characters must be on the module and the length must be exactly 20 characters long!";
 	private bool startChallenge = false;
 #pragma warning restore 414
 
@@ -838,23 +1570,24 @@ public class ModuleListening : MonoBehaviour
 	{
 		interactable = false;
 		yield return null;
-		for (int x = 0; x <= 60; x++)
+		for (float x = 0; x < 60; x += Time.deltaTime * 10)
 		{
 			lightTransform.intensity = x;
-			yield return new WaitForSeconds(0);
+			yield return null;
 		}
 		Start();
 		interactable = true;
-		for (int x = 60; x >= 0; x--)
+        for (float x = 60; x > 0; x -= Time.deltaTime * 10)
 		{
 			lightTransform.intensity = x;
-			yield return new WaitForSeconds(0);
+			yield return null;
 		}
+		lightTransform.intensity = 0;
 	}
 
 	IEnumerator DelayChallenge()
 	{
-		yield return new WaitForSeconds(5);
+		yield return new WaitForSecondsRealtime(5);
 		startChallenge = false;
 	}
 	private IEnumerator challengeHandler;
