@@ -54,6 +54,7 @@ public class ModuleListening : MonoBehaviour
 		"Double Expert", "Double-Oh", "Encrypted Equations", "European Travel","Fast Math", "Forget Enigma", "Forget Me Now", "Free Parking", "Friendship", "Gadgetron Vendor",
 		"Graffiti Numbers", "Gridlock", "Guitar Chords", "Hexamaze", "Hidden Colors", "Hieroglyphics", "Hogwarts", "The Hypercube", "Instructions", "The Jack-O’-Lantern",
 		"The Jewel Vault", "Kudosudoku", "The Labyrinth", "Laundry", "LED Math", "Lightspeed", "The London Underground", "Lucky Dice", "Maintenance", "Mazematics",
+
 		"Mega Man 2", "Minesweeper", "Mortal Kombat", "The Necronomicon", "Neutralization", "The Number Cipher", "Number Nimbleness", "Only Connect", "Painting", "Partial Derivatives",
 		"Perspective Pegs", "Poetry", "Quiz Buzz", "Qwirkle", "Rhythms", "Rock-Paper-Scissors-L.-Sp.", "Schlag den Bomb", "Seven Deadly Sins", "Shapes and Bombs", "Silly Slots", "Simon Samples",
 		"Simon Selects", "Simon Sends", "Simon Simons", "Simon Sings", "Simon Stores", "Simon's Stages", "Sink","Sonic The Hedgehog", "Souvenir", "The Sphere",
@@ -61,16 +62,17 @@ public class ModuleListening : MonoBehaviour
 		"Valves", "Visual Impairment", "Waste Management","Wavetapping", "The Wire", "Word Search", "X-Ray", "X01", "Yahtzee", "Zoni",
 	};
 	string[] moduleIds = {
-		"MistakeModule","BartendingModule","BattleshipModule","benedictCumberbatch","BlackHoleModule","blockbusters","ksmBobBarks","bootTooBig","britishSlang","BrokenButtonsModule",
-		"burglarAlarm","CheapCheckoutModule","ChordQualities","christmasPresents","lgndColoredKeys","ColoredSquaresModule","cookieJars","CreationModule","crystalMaze","cube",
-		"doubleExpert","DoubleOhModule","EncryptedEquationsModule","europeanTravel","fastMath","forgetEnigma","ForgetMeNow","freeParking","FriendshipModule","lgndGadgetronVendor",
-		"graffitiNumbers","GridlockModule","guitarChords","HexamazeModule","lgndHiddenColors","hieroglyphics","HogwartsModule","TheHypercubeModule","instructions","jackOLantern",
-		"jewelVault","KudosudokuModule","labyrinth","Laundry","lgndLEDMath","lightspeed","londonUnderground","luckyDice","maintenance","mazematics",
-		"megaMan2","MinesweeperModule","mortalKombat","necronomicon","neutralization","numberCipher","numberNimbleness","OnlyConnectModule","Painting","partialDerivatives",
-		"spwizPerspectivePegs","poetry","quizBuzz","qwirkle","MusicRhythms","RockPaperScissorsLizardSpockModule","qSchlagDenBomb","sevenDeadlySins","ShapesBombs","SillySlots","simonSamples",
-		"simonSelectsModule","SimonSendsModule","simonSimons","SimonSingsModule","simonStores","simonsStages","Sink","sonic","SouvenirModule","sphere",
-		"streetFighter","sun","theSwan","SynchronizationModule","Tangrams","tashaSqueals","TennisModule","turtleRobot","unfairCipher",
-		"valves","visual_impairment","wastemanagement","Wavetapping","wire","WordSearchModule","XRayModule","X01","YahtzeeModule","lgndZoni",
+		"MistakeModule", "BartendingModule", "BattleshipModule", "benedictCumberbatch", "BlackHoleModule", "blockbusters", "ksmBobBarks", "bootTooBig", "britishSlang", "BrokenButtonsModule",
+		"burglarAlarm", "CheapCheckoutModule", "ChordQualities", "christmasPresents", "lgndColoredKeys", "ColoredSquaresModule", "cookieJars", "CreationModule", "crystalMaze", "cube",
+		"doubleExpert", "DoubleOhModule", "EncryptedEquationsModule", "europeanTravel", "fastMath", "forgetEnigma", "ForgetMeNow", "freeParking", "FriendshipModule", "lgndGadgetronVendor",
+		"graffitiNumbers", "GridlockModule", "guitarChords", "HexamazeModule", "lgndHiddenColors", "hieroglyphics", "HogwartsModule", "TheHypercubeModule", "instructions", "jackOLantern",
+		"jewelVault", "KudosudokuModule", "labyrinth", "Laundry", "lgndLEDMath", "lightspeed", "londonUnderground", "luckyDice", "maintenance", "mazematics",
+
+		"megaMan2", "MinesweeperModule", "mortalKombat", "necronomicon", "neutralization", "numberCipher", "numberNimbleness", "OnlyConnectModule", "Painting", "partialDerivatives",
+		"spwizPerspectivePegs", "poetry", "quizBuzz", "qwirkle", "MusicRhythms", "RockPaperScissorsLizardSpockModule", "qSchlagDenBomb", "sevenDeadlySins", "ShapesBombs", "SillySlots", "simonSamples",
+		"simonSelectsModule", "SimonSendsModule"," simonSimons", "SimonSingsModule", "simonStores", "simonsStages", "Sink", "sonic", "SouvenirModule", "sphere",
+		"streetFighter", "sun", "theSwan", "SynchronizationModule", "Tangrams", "tashaSqueals", "TennisModule", "turtleRobot", "unfairCipher",
+		"valves", "visual_impairment", "wastemanagement", "Wavetapping", "wire", "WordSearchModule", "XRayModule", "X01", "YahtzeeModule", "lgndZoni",
 	};
 	string[] moduleCodesAll = new string[]
 		{
@@ -79,9 +81,10 @@ public class ModuleListening : MonoBehaviour
 			"!@_^!", "_<'\\'", "|!(|\\", "%!^|(", "_<_!%", "!@!^_", "%^!^^", "^!<\\\\", "<''\\(", "(_%!|",
 			"\\_@<%", "%\\'(\\", "<!'|!", "'(^<!", "_'%\\!", "!'%!(", "^(%|\\", "^!!(\\", "!^<%(", "'@\\\\|",
 			"|(@'^", "_|%<|", "_<_|_", "@('('", "@\\!^_", "'_!^'", "@%<'_", "|<(\\@", "|'||<", "'(!%'",
-			"!(\\(_", "'(%@_", "|''\\|", "%\\\\<!", "(^_<!", "(!^'\\", "@'!^^", "|(<@_", "^!(!'",
-			"''!%^", "@^@|_", "'_!%^", "^^^@(", "<|!%%", "!\\((<", "|''%\\", "('\\!'", "^@@(^", "^__(_",
-			"(_%@!", "!@|!!", "^%@!<", "@<___", "|(@@!", "_|^||", "!^@'_", "'!_(%","!<|@!", "^|<!^", "^<<!%",
+			
+			"!(\\(_", "'(%@_", "|''\\|", "%\\\\<!", "(^_<!", "(!^'\\", "@'!^^", "|(<@_", "^!(!'", "''!%^",
+			"@^@|_", "!@|!!", "'_!%^", "^^^@(", "<|!%%", "!\\((<", "|''%\\", "('\\!'", "^@@(^", "^__(_",
+			"(_%@!", "^%@!<", "@<___", "|(@@!", "_|^||", "!^@'_", "'!_(%","!<|@!", "^|<!^", "^<<!%",
 			"@(\\\\\\", "^\\|^^", "^<!|%", "'!@@|", "%@_(@","!<!_<", "<|@(<", "\\(!!(", "|^<<_", "_@''_",
 			"_|_!!", "!_\\!|", "<_<^!", "_!<^(", "%^|_!", "''!'!", "'^_'\\", "!'<\\|", "!(%|(", "%(%(_",
 		};
