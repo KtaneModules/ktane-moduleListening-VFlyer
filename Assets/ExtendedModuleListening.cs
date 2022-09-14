@@ -7,7 +7,7 @@ using KModkit;
 using rnd = UnityEngine.Random;
 using System.Text.RegularExpressions;
 
-public class ModuleListening : MonoBehaviour 
+public class ExtendedModuleListening : MonoBehaviour 
 {
 	public KMBombInfo bomb;
 	public KMAudio mAudio;
