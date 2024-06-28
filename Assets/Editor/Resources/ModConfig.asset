@@ -21,6 +21,6 @@ MonoBehaviour:
     PDF: https://ktane.timwi.de/PDF/Module%20Listening.pdf\r\n\r\nGitHub Repository
     (Reupload): https://github.com/VFlyer/ktane-moduleListening\nGitHub Repository
     (Legacy): https://github.com/luisdiogo98/ktane-moduleListening\n\r\n"
-  version: 2.1.02
+  version: 2.1.03
   outputFolder: build
   previewImage: {fileID: 2800000, guid: 857a3807ae5438c4b947489a68693ffe, type: 3}
